@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:drawableLeft="@drawable/currency_sign_rupee_pencil"
+        android:hint="Enter the amount"
+        android:id="@+id/editAmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/txtmy_flat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textSize="10dp"
+        android:paddingTop="10sp"
+        android:paddingLeft="8sp"
+        android:background="@drawable/triangle_from"
+        android:text="Select Flat"/>
+
+    <Spinner
+        android:id="@+id/my_flatspinner"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txtmy_flat"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtmy_paymode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textSize="10dp"
+        android:paddingTop="10sp"
+        android:paddingLeft="8sp"
+        android:layout_below="@+id/my_spinner"
+        android:background="@drawable/triangle_from"
+        android:text="Select Payment mode"/>
+
+    <Spinner
+        android:id="@+id/my_paymodespinner"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txtmy_paymode"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ownername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:textColor="@color/timestamp"
+        android:visibility="gone"
+        android:layout_below="@+id/my_paymodespinner"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/rentername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:textColor="@color/timestamp"
+        android:layout_below="@+id/ownername"
+        android:visibility="gone"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/flatnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:textColor="@color/timestamp"
+        android:visibility="gone"
+        android:layout_below="@+id/rentername"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/fltdiscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:background="@drawable/textviewleftborder"
+        android:textColor="@color/timestamp"
+        android:layout_below="@+id/flatnumber"
+        android:text="@string/FlatdescriptionwithLastTransaction"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:id="@+id/bubblecontentWithBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="@drawable/in_message_bg"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/lastPaidEntrydt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:text="Date : "
+        android:textSize="10sp"
+        android:textColor="@color/red"
+        android:layout_below="@+id/fltdiscription"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/lastPaidMonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:textColor="@color/red"
+        android:textSize="10sp"
+        android:layout_below="@+id/lastPaidEntrydt"
+        android:text="Month : "
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/lastPaidYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6sp"
+        android:textColor="@color/red"
+        android:textSize="10sp"
+        android:text="Year :"
+        android:layout_below="@+id/lastPaidMonth"
+        android:textStyle="italic" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bubblecontentWithBackgroundcash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/out_message_bg"
+        android:paddingLeft="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/lastPaidAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6sp"
+            android:textSize="10sp"
+            android:text="Amount : "
+            android:textColor="@color/red"
+            android:layout_below="@+id/lastPaidYear"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/lastPaidby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6sp"
+            android:textSize="10sp"
+            android:text="paid by : "
+            android:textColor="@color/red"
+            android:layout_below="@+id/lastPaidAmount"
+            android:textStyle="italic" />
+    </LinearLayout>
+</LinearLayout>

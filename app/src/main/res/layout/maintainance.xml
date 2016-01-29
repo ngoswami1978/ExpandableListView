@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/date_time"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b30000"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Pay Maintainance  "
+                    android:gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center|center_vertical"
+                    android:textSize="15sp"
+                    android:fontFamily="@string/abc_action_bar_home_description_format"
+                    android:visibility="gone"
+                    android:background="@drawable/textviewrightborder"
+                    android:textColor="@color/white"
+                    android:id="@+id/tvpayMain" />
+
+                <ImageView
+                    android:src="@drawable/paymentcard"
+                    android:layout_width="150dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imagePay"
+                    android:padding="15dp" />
+
+                <ImageView
+                    android:src="@drawable/jan"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewJAN"
+                    android:layout_gravity="center"
+                    android:padding="15dp" />
+
+                <ImageView
+                    android:src="@drawable/feb"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewFEB"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/mar"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewMAR"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/apr"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewAPR"
+                    android:layout_gravity="center"
+                    android:padding="15dp" />
+
+                <ImageView
+                    android:src="@drawable/may"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewMAY"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/jun"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewJUN"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/jul"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewJUL"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/aug"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewAUG"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/sep"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewSEP"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/oct"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewOCT"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/nov"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewNOV"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+                <ImageView
+                    android:src="@drawable/dec"
+                    android:layout_width="125dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewDEC"
+                    android:layout_gravity="center"
+                    android:padding="15dp"/>
+
+
+            </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#00ff00">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#b30000"
+        tools:context="me.vable.android.viewandlayoutlessons.FrameLayoutExampleActivity">
+
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:background="#b30000">
+
+            <!-- Row 1 with single column -->
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvDispMaintreportText"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:textColor="@color/text_color"-->
+                    <!--android:drawableBottom="@drawable/monthlyreport_text"-->
+                    <!--android:layout_gravity="left|left"-->
+                    <!--android:gravity="center"/>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivrpt"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:src="@drawable/monthlyreport_text" />-->
+
+                <com.neerajweb.expandablelistviewtest.TouchImageView
+                    android:id="@+id/ivrpt"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:clickable="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/monthlyreport_text" />
+
+
+                <TextView
+                    android:id="@+id/tvDispMaintjan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:padding="10dip"
+                    android:text=""
+                    android:fontFamily="sans-serif"
+                    android:background="@drawable/textviewleftborder"
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_january"
+                    android:layout_gravity="center|center"
+                    android:gravity="center"/>
+
+            </TableRow>
+
+            <!-- Row 2 with 3 columns -->
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDispMaintfeb"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_february"
+                    android:layout_gravity="center|bottom"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tvDispMaintmar"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_march"
+                    android:layout_gravity="left|bottom"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/tvDispMaintapr"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_april"
+                    android:layout_gravity="center|bottom"
+
+                    android:gravity="center"/>
+            </TableRow>
+
+            <!-- Row 3 with 2 columns -->
+
+            <TableRow
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvDispMaintmay"
+                    android:layout_weight="1"
+                    android:padding="18dip"
+                    android:background="@drawable/textviewrightborder"
+                    android:textStyle="bold"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_may"
+                    android:layout_gravity="right|bottom"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tvDispMaintjun"
+                    android:layout_weight="1"
+                    android:padding="18dip"
+                    android:background="@drawable/textviewrightborder"
+                    android:textStyle="bold"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_june"
+                    android:layout_gravity="right|bottom"
+                    android:gravity="center"/>
+            </TableRow>
+
+
+            <!-- Row 4 with single column -->
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvDispMaintjul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="3"
+                    android:padding="18dip"
+                    android:background="@drawable/textviewleftborder"
+                    android:textStyle="bold"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_july"
+                    android:layout_gravity="center|center"
+                    android:gravity="center"
+                    />
+
+            </TableRow>
+
+            <!-- Row 5 with 3 columns -->
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDispMaintaug"
+                    android:layout_weight="1"
+                    android:padding="20dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_aug"
+                    android:layout_gravity="left|bottom"
+
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/tvDispMaintsep"
+                    android:layout_weight="1"
+                    android:padding="20dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_sep"
+                    android:layout_gravity="left|bottom"
+
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/tvDispMaintoct"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableBottom="@drawable/shape_october"
+                    android:layout_gravity="center|bottom"
+
+                    android:gravity="center"/>
+            </TableRow>
+
+            <!-- Row 6 with 2 columns -->
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvDispMaintnov"
+                    android:layout_weight="1"
+                    android:padding="18dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_nov"
+                    android:layout_gravity="left|bottom"
+
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tvDispMaintdec"
+                    android:layout_weight="1"
+                    android:padding="18dip"
+                    android:textStyle="bold"
+                    android:background="@drawable/textviewrightborder"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:drawableRight="@drawable/shape_dec"
+                    android:layout_gravity="left|bottom"
+
+                    android:gravity="center"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </FrameLayout>
+    </ScrollView>
+</LinearLayout>
