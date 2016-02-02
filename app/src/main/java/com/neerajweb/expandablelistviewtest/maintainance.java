@@ -7,9 +7,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -22,6 +27,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -68,6 +75,8 @@ import java.util.TimerTask;
  */
 
 public class maintainance extends ActionBarActivity implements DateTimePicker.OnDateTimeSetListener {
+
+    private ExpandableLayout mExpandableLayout;
 
     private modelLoadrptPeriodsMaintainance model_rptPeriods;
 
@@ -163,6 +172,47 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintainance);
         IsSaveMaintainance=false;
+
+
+        //Code for total Collection using Expandable Bounce effect
+        View switcher = findViewById(R.id.switcher);
+        mExpandableLayout = (ExpandableLayout) findViewById(R.id.expandableLayout);
+        mExpandableLayout.setSwitcher(switcher);
+        mExpandableLayout.setExpandInterpolator(new BounceInterpolator());
+        mExpandableLayout.setCollapseInterpolator(new AccelerateDecelerateInterpolator());
+        mExpandableLayout.setExpandDuration(800);
+        mExpandableLayout.setCollapseDuration(400);
+
+        mExpandableLayout.setOnStateChangedListener(new ExpandableLayout.OnStateChangedListener() {
+            @Override
+            public void onPreExpand() {
+                Log.d("ExpandableLayout", "onPreExpand");
+            }
+
+            @Override
+            public void onPreCollapse() {
+                Log.d("ExpandableLayout", "onPreCollapse");
+            }
+
+            @Override
+            public void onExpanded() {
+                Log.d("ExpandableLayout", "onExpanded");
+            }
+
+            @Override
+            public void onCollapsed() {
+                Log.d("ExpandableLayout", "onCollapsed");
+            }
+        });
+        findViewById(R.id.btnTitle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandableLayout.toggle();
+            }
+        });
+        //end Code for total Collection using Expandable Bounce effect
+
+
 
         MPD = new ProgressDialog(this);
         MPD.setMessage("please wait your payment is posting.....");
@@ -698,7 +748,6 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
                             try {
                                 // prepare the list of all records--------
                                 ArrayList<HashMap<String, String>> fillMaps=new ArrayList<HashMap<String, String>>();
@@ -729,10 +778,8 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                                         objModelMaintainancerptPeriods.add(model_rptPeriods);
                                         fillMaps.add(map);
                                     } // for loop ends
-
                                     PD.dismiss();
                                     reDrawReportControl(objModelMaintainancerptPeriods, fillMaps);
-
                                 } // if ends
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -742,7 +789,7 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     PD.dismiss();
-                    Toast.makeText(mContext,
+                    Toast.makeText(maintainance.this,
                             "failed to retrive infomations please check your network connection...", Toast.LENGTH_SHORT).show();
                 }
             }) {
@@ -849,7 +896,13 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
     @Override
     protected void onResume() {
         super.onResume();
-        loadJSONManageRptPeriods();
+        try {
+            loadJSONManageRptPeriods();
+        }
+        catch  (Exception Ex)
+        {
+            Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -1259,64 +1312,92 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
 
             mYear =String.valueOf(intYear);
 
+//            // load the origial BitMap (500 x 500 px)
+//            Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(),
+//                    R.drawable.jan);
+//
+//            int width = bitmapOrg.getWidth();
+//            int height = bitmapOrg.getHeight();
+//            int newWidth = 200;
+//            int newHeight = 200;
+//
+//            // calculate the scale - in this case = 0.4f
+//            float scaleWidth = ((float) newWidth) / width;
+//            float scaleHeight = ((float) newHeight) / height;
+//
+//            // createa matrix for the manipulation
+//            Matrix matrix = new Matrix();
+//            // resize the bit map
+//            matrix.postScale(scaleWidth, scaleHeight);
+//            // rotate the Bitmap
+//            //matrix.postRotate(45);
+//
+//            // recreate the new Bitmap
+//            Bitmap resizedBitmap = Bitmap.createBitmap(bitmapOrg, 0, 0,
+//                    width, height, matrix, true);
+//
+//            // make a Drawable from Bitmap to allow to set the BitMap
+//            // to the ImageView, ImageButton or what ever
+//            BitmapDrawable bmd = new BitmapDrawable(resizedBitmap);
+
             switch (intMonth) {
                 case 0:
-                    dialogBuilder.setIcon(R.drawable.jan);
+                    dialogBuilder.setIcon(R.mipmap.ic_jan);
                     mMonth= String.valueOf("1");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 1:
-                    dialogBuilder.setIcon(R.drawable.feb);
+                    dialogBuilder.setIcon(R.mipmap.ic_feb);
                     mMonth= String.valueOf("2");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 2:
-                    dialogBuilder.setIcon(R.drawable.mar);
+                    dialogBuilder.setIcon(R.mipmap.ic_mar);
                     mMonth= String.valueOf("3");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 3:
-                    dialogBuilder.setIcon(R.drawable.apr);
+                    dialogBuilder.setIcon(R.mipmap.ic_apr);
                     mMonth= String.valueOf("4");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 4:
-                    dialogBuilder.setIcon(R.drawable.may);
+                    dialogBuilder.setIcon(R.mipmap.ic_may);
                     mMonth= String.valueOf("5");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 5:
-                    dialogBuilder.setIcon(R.drawable.jun);
+                    dialogBuilder.setIcon(R.mipmap.ic_jun);
                     mMonth= String.valueOf("6");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 6:
-                    dialogBuilder.setIcon(R.drawable.jul);
+                    dialogBuilder.setIcon(R.mipmap.ic_jul);
                     mMonth= String.valueOf("7");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 7:
-                    dialogBuilder.setIcon(R.drawable.aug);
+                    dialogBuilder.setIcon(R.mipmap.ic_aug);
                     mMonth= String.valueOf("8");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 8:
-                    dialogBuilder.setIcon(R.drawable.sep);
+                    dialogBuilder.setIcon(R.mipmap.ic_sep);
                     mMonth= String.valueOf("9");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 9:
-                    dialogBuilder.setIcon(R.drawable.oct);
+                    dialogBuilder.setIcon(R.mipmap.ic_oct);
                     mMonth= String.valueOf("10");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 10:
-                    dialogBuilder.setIcon(R.drawable.nov);
+                    dialogBuilder.setIcon(R.mipmap.ic_nov);
                     mMonth= String.valueOf("11");
                     mMonthCode= getMonthCode(mMonth);
                     break;
                 case 11:
-                    dialogBuilder.setIcon(R.drawable.dec);
+                    dialogBuilder.setIcon(R.mipmap.ic_dec);
                     mMonth= String.valueOf("12");
                     mMonthCode= getMonthCode(mMonth);
                     break;
