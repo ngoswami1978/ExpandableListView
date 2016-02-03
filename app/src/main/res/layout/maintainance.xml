@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/date_time"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b30000"
+    android:background="#660000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,15 +35,16 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="50dp"
-                android:src="@mipmap/sun" />
+                android:src="@mipmap/moneybag" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:textColor="#efafd1"
-                android:textSize="48sp" />
+                android:text="Collection"
+                android:textSize="38sp" />
         </FrameLayout>
 
 
@@ -44,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Collection"
+            android:text=""
             android:textColor="#fff9ff"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -63,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#bb3a7a"
+        android:background="#990000"
         android:orientation="vertical"
         app:duration="350"
         app:initialState="expand"
@@ -84,11 +93,12 @@
                 android:src="@mipmap/small_sum" />
 
             <TextView
+                android:id="@+id/txtviewjantotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="14:00 pm - 15:00 pm"
+                android:text=""
                 android:textColor="#efafd1" />
         </LinearLayout>
 
@@ -106,11 +116,12 @@
                 android:src="@mipmap/rain" />
 
             <TextView
+                android:id="@+id/txtviewfebtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="15:00 pm - 16:00 pm"
+                android:text=""
                 android:textColor="#efafd1" />
         </LinearLayout>
 
@@ -122,17 +133,19 @@
             android:padding="5dp">
 
             <ImageView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:src="@mipmap/thunder" />
 
             <TextView
+                android:id="@+id/txtviewmartotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="16:00 pm - 17:00 pm"
+                android:text=""
                 android:textColor="#efafd1" />
         </LinearLayout>
 
@@ -150,16 +163,15 @@
                 android:src="@mipmap/snow" />
 
             <TextView
+                android:id="@+id/txtviewaprtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="17:00 pm - 18:00 pm"
+                android:text=""
                 android:textColor="#efafd1" />
         </LinearLayout>
     </com.neerajweb.expandablelistviewtest.ExpandableLayout>
-
-
 
     <HorizontalScrollView
         android:layout_width="350dp"
@@ -599,7 +611,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#b30000"
+        android:background="#660000"
         tools:context="me.vable.android.viewandlayoutlessons.FrameLayoutExampleActivity">
 
 
@@ -609,7 +621,7 @@
             android:layout_height="match_parent"
             android:shrinkColumns="*"
             android:stretchColumns="*"
-            android:background="#b30000">
+            android:background="@color/red">
 
             <!-- Row 1 with single column -->
 
@@ -646,7 +658,7 @@
                     android:layout_marginRight="4dp"
                     android:clickable="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/monthlyreport_text" />
+                    android:src="@mipmap/ic_monthlyreport_text" />
 
 
                 <TextView
@@ -655,7 +667,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:padding="10dip"
-                    android:text=""
+                    android:text="Mon Year"
                     android:fontFamily="sans-serif"
                     android:background="@drawable/textviewleftborder"
                     android:textColor="@color/text_color"
@@ -849,4 +861,18 @@
 
     </FrameLayout>
     </ScrollView>
+
 </LinearLayout>
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab_refresh_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_marginBottom="16dp"
+    android:layout_marginRight="16dp"
+    android:src="@mipmap/refresh"
+    android:backgroundTint="@color/FloatingActionButtonColor"
+    app:rippleColor="@color/white"
+    app:fabSize="normal"
+    app:borderWidth="0dp"/>
+</android.support.design.widget.CoordinatorLayout>

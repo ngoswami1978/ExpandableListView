@@ -18,7 +18,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -28,7 +33,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -77,6 +87,8 @@ import java.util.TimerTask;
 public class maintainance extends ActionBarActivity implements DateTimePicker.OnDateTimeSetListener {
 
     private ExpandableLayout mExpandableLayout;
+    FloatingActionButton FAB;
+//    final OvershootInterpolator interpolator= new OvershootInterpolator();
 
     private modelLoadrptPeriodsMaintainance model_rptPeriods;
 
@@ -149,6 +161,13 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
     TextView textviewoct;
     TextView textviewnov;
     TextView textviewdec;
+
+    TextView txtviewjantotal;
+    TextView txtviewfebtotal;
+    TextView txtviewmartotal;
+    TextView txtviewaprtotal;
+
+
 
     Drawable[] myTextViewCompoundDrawablesJAN;
     Drawable[] myTextViewCompoundDrawablesFEB;
@@ -291,6 +310,12 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         textviewdec= (TextView) findViewById(R.id.tvDispMaintdec);
 
 
+        txtviewjantotal= (TextView) findViewById(R.id.txtviewjantotal);
+        txtviewfebtotal= (TextView) findViewById(R.id.txtviewfebtotal);
+        txtviewmartotal= (TextView) findViewById(R.id.txtviewmartotal);
+        txtviewaprtotal= (TextView) findViewById(R.id.txtviewaprtotal);
+
+
         myTextViewCompoundDrawablesJAN = textviewjan.getCompoundDrawables();
         myTextViewCompoundDrawablesFEB = textviewfeb.getCompoundDrawables();
         myTextViewCompoundDrawablesMAR = textviewmar.getCompoundDrawables();
@@ -305,6 +330,63 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         myTextViewCompoundDrawablesDEC = textviewdec.getCompoundDrawables();
 
         MAX_LEVEL = 10000;
+
+//        FAB = (FloatingActionButton) findViewById(R.id.fab_refresh_btn);
+
+        final FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_refresh_btn);
+        floatingActionButton.setTranslationY(floatingActionButton.getHeight() + 20);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_refresh_btn);
+                floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+        },5000);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    final FloatingActionButton floatingActionButton = (FloatingActionButton)  v.findViewById(R.id.fab_refresh_btn);
+
+//                    final OvershootInterpolator interpolator = new OvershootInterpolator();
+//                    ViewCompat.animate(FAB).rotation(360f).withLayer().setDuration(MAX_LEVEL).setInterpolator(interpolator).start();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+//                          floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+                            final OvershootInterpolator interpolator = new OvershootInterpolator();
+                            ViewCompat.animate(floatingActionButton).rotation(360f).withLayer().setDuration(MAX_LEVEL).setInterpolator(interpolator).start();
+
+                        }
+                    },5000);
+
+
+                    loadJSONManageRptPeriods();
+                } catch (Exception Ex) {
+                    Toast.makeText(maintainance.this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
+//        FAB.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    final OvershootInterpolator interpolator = new OvershootInterpolator();
+//                    ViewCompat.animate(FAB).rotation(360f).withLayer().setDuration(MAX_LEVEL).setInterpolator(interpolator).start();
+//                    loadJSONManageRptPeriods();
+//                } catch (Exception Ex) {
+//                    Toast.makeText(maintainance.this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
         final TouchImageView touchimage = (TouchImageView) findViewById(R.id.ivrpt);
         touchimage.setOnTouchImageViewListener(new TouchImageView.OnTouchImageViewListener() {
@@ -728,6 +810,8 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+
+
     // LoadJSON
     private void loadJSONManageRptPeriods() {
         // JSON Node names
@@ -735,6 +819,8 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         final String ITEM_YEAR="Year";
         final String ITEM_MONTHNAME="MonthName";
         final String ITEM_MONTHNAMEYEAR="MonthNameYear";
+        final String ITEM_TOTALAMOUNT="Amount";
+
 
         PD = new ProgressDialog(this);
         PD.setMessage("getting information " + "\n" + "please wait.....");
@@ -769,11 +855,13 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                                         map.put(ITEM_YEAR,jobj.getString(ITEM_YEAR));
                                         map.put(ITEM_MONTHNAME,jobj.isNull(ITEM_MONTHNAME) ? "" : jobj.getString(ITEM_MONTHNAME));
                                         map.put(ITEM_MONTHNAMEYEAR, jobj.isNull(ITEM_MONTHNAMEYEAR) ? "" : jobj.getString(ITEM_MONTHNAMEYEAR));
+                                        map.put(ITEM_TOTALAMOUNT, jobj.isNull(ITEM_TOTALAMOUNT) ? "" : jobj.getString(ITEM_TOTALAMOUNT));
 
                                         model_rptPeriods.setMonth(Integer.parseInt(jobj.getString(ITEM_MONTH)));
                                         model_rptPeriods.setYear(Integer.parseInt(jobj.getString(ITEM_YEAR)));
                                         model_rptPeriods.setMonthName(jobj.isNull(ITEM_MONTHNAME) ? "" : jobj.getString(ITEM_MONTHNAME));
                                         model_rptPeriods.setMonthNameYear(jobj.isNull(ITEM_MONTHNAMEYEAR) ? "" : jobj.getString(ITEM_MONTHNAMEYEAR));
+                                        model_rptPeriods.setTotalAmount(jobj.isNull(ITEM_TOTALAMOUNT) ? 0 : Integer.parseInt(jobj.getString(ITEM_TOTALAMOUNT)));
 
                                         objModelMaintainancerptPeriods.add(model_rptPeriods);
                                         fillMaps.add(map);
@@ -826,21 +914,26 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                 {
                     textviewjan.setTag(objperiod.getMonth() +" " + objperiod.getYear());
                     textviewjan.setText(objperiod.getMonthNameYear());
+                    txtviewjantotal.setText(objperiod.getMonthNameYear() +" - "+ String.valueOf(objperiod.getTotalAmount()));
                 }
+
                 if (inttotalperiod==10) //design first TextView control
                 {
                     textviewfeb.setTag(objperiod.getMonth() +" " + objperiod.getYear());
                     textviewfeb.setText(objperiod.getMonthNameYear());
+                    txtviewfebtotal.setText(objperiod.getMonthNameYear() +" - "+ String.valueOf(objperiod.getTotalAmount()));
                 }
                 if (inttotalperiod==9) //design first TextView control
                 {
                     textviewmar.setTag(objperiod.getMonth() +" " + objperiod.getYear());
                     textviewmar.setText(objperiod.getMonthNameYear());
+                    txtviewmartotal.setText(objperiod.getMonthNameYear() +" - "+ String.valueOf(objperiod.getTotalAmount()));
                 }
                 if (inttotalperiod==8) //design first TextView control
                 {
                     textviewapr.setTag(objperiod.getMonth() +" " + objperiod.getYear());
                     textviewapr.setText(objperiod.getMonthNameYear());
+                    txtviewaprtotal.setText(objperiod.getMonthNameYear() +" - "+ String.valueOf(objperiod.getTotalAmount()));
                 }
                 if (inttotalperiod==7) //design first TextView control
                 {

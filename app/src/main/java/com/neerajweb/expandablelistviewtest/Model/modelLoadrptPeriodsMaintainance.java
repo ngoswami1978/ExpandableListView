@@ -10,15 +10,18 @@ public class modelLoadrptPeriodsMaintainance {
     private int Year;
     private String MonthName;
     private String MonthNameYear;
+    private int Amount;
+
 
     public modelLoadrptPeriodsMaintainance() {}
 
-    public modelLoadrptPeriodsMaintainance(int mMonth, int mmYear, String mMonthName, String mmMonthNameYear)
+    public modelLoadrptPeriodsMaintainance(int mMonth, int mmYear, String mMonthName, String mmMonthNameYear,int mTotalAmount)
     {
         this.Month=mMonth;
         this.Year=mmYear;
         this.MonthName=mMonthName;
         this.MonthNameYear=mmMonthNameYear;
+        this.Amount=mTotalAmount;
     }
 
     public void setMonth(int _sMonth)    {        this.Month = _sMonth;    }
@@ -32,5 +35,10 @@ public class modelLoadrptPeriodsMaintainance {
 
     public void setMonthNameYear(String _MonthNameYear)    {        this.MonthNameYear = _MonthNameYear;    }
     public String getMonthNameYear()    {        return this.MonthNameYear;    }
+
+    public void setTotalAmount(int _Amount)    {        this.Amount= _Amount;    }
+    public int getTotalAmount()    {        return this.Amount;    }
+
+
 
 }
