@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
+        android:paddingTop="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/rptheaderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/reportheadercolor"
+            android:textSize="@dimen/feed_item_timestamp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/reportheader"/>
+
+        <TextView
+            android:id="@+id/rptsubheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Amount"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:padding="@dimen/five_dp"
+            android:textColor="@color/reportheadercolor"
+            android:textSize="8dp"/>
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginRight="@dimen/five_dp"
+            android:visibility="gone">
+        </WebView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/rptbackgroungImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text=""
+                android:padding="@dimen/ten_dp"
+                android:textColor="@color/red"
+                android:alpha="0.10"
+                android:background="@drawable/cw_reports"
+                android:textSize="@dimen/normal_font_size"/>
+
+        </ScrollView>
+
+        <ListView
+            android:id="@+id/detail_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="@color/list_divider"
+            android:dividerHeight="1sp"
+            android:listSelector="@drawable/list_row_selector"/>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:padding="1dp"
+        android:background="@null"
+        android:src="@mipmap/ic_cancel" />
+
+    <!--<android.support.design.widget.CoordinatorLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/clayout">-->
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:src="@drawable/report"-->
+            <!--android:backgroundTint="@color/FloatingActionButtonColor"-->
+            <!--app:rippleColor="@color/white"-->
+            <!--app:fabSize="normal"-->
+            <!--app:borderWidth="0dp"/>-->
+    <!--</android.support.design.widget.CoordinatorLayout>-->
+</FrameLayout>

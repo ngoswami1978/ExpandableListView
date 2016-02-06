@@ -15,6 +15,7 @@
     <string name="FlatdescriptionwithLastTransaction">The Last Maintainance deposit detail</string>
     <string name="Rs">\u20B9</string>
     <string name="rs">\u20A8</string>
+    <string name="reportheader"><u><b><i>PERIOD SEP 2015</i></b></u></string>
 
     <string name="PayMaintaincence">Maintainance</string>
 

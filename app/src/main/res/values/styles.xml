@@ -21,6 +21,11 @@
         <item name="android:windowEnterAnimation">@anim/anim_in</item>
         <item name="android:windowExitAnimation">@anim/anim_out</item>
     </style>
+
+    <style name="SlideDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_top_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_top</item>
+    </style>
     <!-- end Applied on Alert Dialog Message of Maintainance save. -->
 
 </resources>

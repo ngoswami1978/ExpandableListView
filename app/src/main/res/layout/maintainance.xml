@@ -6,178 +6,469 @@
     android:id="@+id/clayout"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/date_time"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#660000"
-    android:orientation="vertical">
-
     <LinearLayout
-        android:id="@+id/btnTitle"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/date_time"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/selector"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="#660000"
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="50dp"
-                android:src="@mipmap/moneybag" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:textColor="#efafd1"
-                android:text="Collection"
-                android:textSize="38sp" />
-        </FrameLayout>
-
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/btnTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector"
             android:gravity="center"
-            android:text=""
-            android:textColor="#fff9ff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/switcher"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="top|right"
-            android:layout_margin="10dp"
-            android:src="@mipmap/arrow" />
-    </LinearLayout>
-    <com.neerajweb.expandablelistviewtest.ExpandableLayout
-        android:id="@+id/expandableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#990000"
-        android:orientation="vertical"
-        app:duration="350"
-        app:initialState="expand"
-        app:clickToToggle="true">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/small_sum" />
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="50dp"
+                    android:src="@mipmap/moneybag" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textColor="#efafd1"
+                    android:text="Collection"
+                    android:textSize="35sp" />
+            </FrameLayout>
+
 
             <TextView
-                android:id="@+id/txtviewjantotal"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
+                android:layout_weight="0.46"
+                android:gravity="right"
                 android:text=""
-                android:textColor="#efafd1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
+                android:textColor="#fff9ff"
+                android:textSize="10sp"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/rain" />
-
-            <TextView
-                android:id="@+id/txtviewfebtotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#efafd1" />
+                android:id="@+id/switcher"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="top|right"
+                android:layout_margin="10dp"
+                android:src="@mipmap/arrow" />
         </LinearLayout>
-
-        <LinearLayout
+        <com.neerajweb.expandablelistviewtest.ExpandableLayout
+            android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#990000"
+            android:orientation="vertical"
+            app:duration="350"
+            app:initialState="expand"
+            app:clickToToggle="true">
 
-            <ImageView
 
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/thunder" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <TextView
-                android:id="@+id/txtviewmartotal"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarone" />
+
+                <TextView
+                    android:id="@+id/txtviewjantotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjantotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#efafd1" />
-        </LinearLayout>
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendartwo" />
+
+                <TextView
+                    android:id="@+id/txtviewfebtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewfebtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarthree" />
+
+                <TextView
+                    android:id="@+id/txtviewmartotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewmartotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarfour" />
+
+                <TextView
+                    android:id="@+id/txtviewaprtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewaprtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarfive" />
+
+                <TextView
+                    android:id="@+id/txtviewmaytotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewmaytotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarsix" />
+
+                <TextView
+                    android:id="@+id/txtviewjuntotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjuntotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarseven" />
+
+                <TextView
+                    android:id="@+id/txtviewjultotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjultotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendareight" />
+
+                <TextView
+                    android:id="@+id/txtviewaugtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewaugtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarnine" />
+
+                <TextView
+                    android:id="@+id/txtviewseptotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewseptotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarten" />
+
+                <TextView
+                    android:id="@+id/txtviewocttotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewocttotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendareleven" />
+
+                <TextView
+                    android:id="@+id/txtviewnovtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewnovtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendartwelve" />
+
+                <TextView
+                    android:id="@+id/txtviewdectotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewdectotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+
+        </com.neerajweb.expandablelistviewtest.ExpandableLayout>
+
+        <HorizontalScrollView
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/snow" />
-
-            <TextView
-                android:id="@+id/txtviewaprtotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#efafd1" />
-        </LinearLayout>
-    </com.neerajweb.expandablelistviewtest.ExpandableLayout>
-
-    <HorizontalScrollView
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_gravity="center">
+            android:id="@+id/scrollView"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -231,12 +522,12 @@
 
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/jan"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewJAN"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp" />-->
+                <!--android:src="@drawable/jan"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewJAN"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp" />-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -263,12 +554,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/feb"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewFEB"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/feb"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewFEB"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
 
                 <FrameLayout
@@ -296,12 +587,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/mar"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewMAR"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/mar"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewMAR"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -328,12 +619,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/apr"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewAPR"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp" />-->
+                <!--android:src="@drawable/apr"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewAPR"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp" />-->
 
 
                 <FrameLayout
@@ -361,12 +652,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/may"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewMAY"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/may"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewMAY"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -394,12 +685,12 @@
 
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/jun"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewJUN"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/jun"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewJUN"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -426,12 +717,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/jul"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewJUL"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/jul"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewJUL"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -458,12 +749,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/aug"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewAUG"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/aug"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewAUG"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -490,12 +781,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/sep"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewSEP"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/sep"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewSEP"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -522,12 +813,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/oct"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewOCT"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/oct"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewOCT"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
 
                 <FrameLayout
@@ -555,12 +846,12 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/nov"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewNOV"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/nov"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewNOV"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -587,292 +878,307 @@
                 </FrameLayout>
 
                 <!--<ImageView-->
-                    <!--android:src="@drawable/dec"-->
-                    <!--android:layout_width="125dp"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:id="@+id/imageViewDEC"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:padding="15dp"/>-->
+                <!--android:src="@drawable/dec"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewDEC"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
 
 
             </LinearLayout>
 
-    </HorizontalScrollView>
+        </HorizontalScrollView>
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#00ff00">
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#660000"
-        tools:context="me.vable.android.viewandlayoutlessons.FrameLayoutExampleActivity">
-
-
-        <TableLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <ScrollView
+            android:id="@+id/scrollView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:shrinkColumns="*"
-            android:stretchColumns="*"
-            android:background="@color/red">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#00ff00">
 
-            <!-- Row 1 with single column -->
-
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tvDispMaintreportText"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:textColor="@color/text_color"-->
-                    <!--android:drawableBottom="@drawable/monthlyreport_text"-->
-                    <!--android:layout_gravity="left|left"-->
-                    <!--android:gravity="center"/>-->
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/ivrpt"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:src="@drawable/monthlyreport_text" />-->
-
-                <com.neerajweb.expandablelistviewtest.TouchImageView
-                    android:id="@+id/ivrpt"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:clickable="true"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_monthlyreport_text" />
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#660000"
+                tools:context="me.vable.android.viewandlayoutlessons.FrameLayoutExampleActivity">
 
 
-                <TextView
-                    android:id="@+id/tvDispMaintjan"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:padding="10dip"
-                    android:text="Mon Year"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/textviewleftborder"
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_january"
-                    android:layout_gravity="center|center"
-                    android:gravity="center"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
-            </TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-            <!-- Row 2 with 3 columns -->
+                        <com.neerajweb.expandablelistviewtest.TouchImageView
+                            android:id="@+id/ivrpt"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:clickable="true"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/ic_monthlyreport_text" />
+                        <TextView
+                            android:id="@+id/tvDisprpttext"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingTop="5dp"
+                            android:background="@drawable/textviewbottomborder"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_alignRight="@+id/ivrpt"
+                            android:textStyle="bold|italic"
+                            android:text="Click Below Following Icon To Generate Monthly Report For The Last 12 Months"
+                            android:textSize="15sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/text_color"/>
+                    </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tvDispMaintfeb"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_february"
-                    android:layout_gravity="center|bottom"
-                    android:gravity="center"
-                    />
-                <TextView
-                    android:id="@+id/tvDispMaintmar"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_march"
-                    android:layout_gravity="left|bottom"
-                    android:gravity="center"/>
-                <TextView
-                    android:id="@+id/tvDispMaintapr"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_april"
-                    android:layout_gravity="center|bottom"
+                        <TextView
+                            android:id="@+id/tvDispMaintjan"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_january"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
-                    android:gravity="center"/>
-            </TableRow>
+                        <TextView
+                            android:id="@+id/tvDispMaintfeb"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_february"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-            <!-- Row 3 with 2 columns -->
+                        <TextView
+                            android:id="@+id/tvDispMaintmar"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_march"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
-            <TableRow
+                        <TextView
+                            android:id="@+id/tvDispMaintapr"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_april"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/tvDispMaintmay"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_may"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
-                <TextView
-                    android:id="@+id/tvDispMaintmay"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:background="@drawable/textviewrightborder"
-                    android:textStyle="bold"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_may"
-                    android:layout_gravity="right|bottom"
-                    android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvDispMaintjun"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_june"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tvDispMaintjun"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:background="@drawable/textviewrightborder"
-                    android:textStyle="bold"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_june"
-                    android:layout_gravity="right|bottom"
-                    android:gravity="center"/>
-            </TableRow>
+                        <TextView
+                            android:id="@+id/tvDispMaintjul"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_july"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
+                        <TextView
+                            android:id="@+id/tvDispMaintaug"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_aug"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-            <!-- Row 4 with single column -->
+                        <TextView
+                            android:id="@+id/tvDispMaintsep"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_sep"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/tvDispMaintoct"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_october"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tvDispMaintjul"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_span="3"
-                    android:padding="20dip"
-                    android:background="@drawable/textviewleftborder"
-                    android:textStyle="bold"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_july"
-                    android:layout_gravity="center|center"
-                    android:gravity="center"
-                    />
+                        <TextView
+                            android:id="@+id/tvDispMaintnov"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_nov"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
 
-            </TableRow>
+                        <TextView
+                            android:id="@+id/tvDispMaintdec"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_dec"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
 
-            <!-- Row 5 with 3 columns -->
+                </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow5"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+            </FrameLayout>
+        </ScrollView>
 
-                <TextView
-                    android:id="@+id/tvDispMaintaug"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_aug"
-                    android:layout_gravity="left|bottom"
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_refresh_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/refresh"
+        android:backgroundTint="@color/FloatingActionButtonColor"
+        app:rippleColor="@color/white"
+        app:fabSize="normal"
+        app:borderWidth="0dp"/>
 
-                    android:gravity="center"/>
-                <TextView
-                    android:id="@+id/tvDispMaintsep"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_sep"
-                    android:layout_gravity="left|bottom"
-
-                    android:gravity="center"/>
-                <TextView
-                    android:id="@+id/tvDispMaintoct"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableBottom="@drawable/shape_october"
-                    android:layout_gravity="center|bottom"
-
-                    android:gravity="center"/>
-            </TableRow>
-
-            <!-- Row 6 with 2 columns -->
-
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/tvDispMaintnov"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_nov"
-                    android:layout_gravity="left|bottom"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/tvDispMaintdec"
-                    android:layout_weight="1"
-                    android:padding="20dip"
-                    android:textStyle="bold"
-                    android:background="@drawable/textviewrightborder"
-                    android:text=""
-                    android:textColor="@color/text_color"
-                    android:drawableRight="@drawable/shape_dec"
-                    android:layout_gravity="left|bottom"
-
-                    android:gravity="center"/>
-            </TableRow>
-
-        </TableLayout>
-
-    </FrameLayout>
-    </ScrollView>
-
-</LinearLayout>
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab_refresh_btn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|right"
-    android:layout_marginBottom="16dp"
-    android:layout_marginRight="16dp"
-    android:src="@mipmap/refresh"
-    android:backgroundTint="@color/FloatingActionButtonColor"
-    app:rippleColor="@color/white"
-    app:fabSize="normal"
-    app:borderWidth="0dp"/>
 </android.support.design.widget.CoordinatorLayout>
