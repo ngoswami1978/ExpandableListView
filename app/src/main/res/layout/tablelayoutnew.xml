@@ -939,7 +939,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_alignRight="@+id/ivrpt"
                         android:textStyle="bold|italic"
-                        android:text="Click Below Icons To Generate Monthly Report For Last 12 Months"
+                        android:text="Click following below report tools to generate maintainance report for the last 12 months"
                         android:textSize="15sp"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/text_color"/>

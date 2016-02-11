@@ -38,6 +38,7 @@
                     android:src="@mipmap/moneybag" />
 
                 <TextView
+                    android:id="@+id/tvCollectionDisptext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -509,6 +510,7 @@
                         android:src="@drawable/jan" />
 
                     <TextView
+                        android:id="@+id/tvCalenderJAN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -519,15 +521,6 @@
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                 </FrameLayout>
-
-
-                <!--<ImageView-->
-                <!--android:src="@drawable/jan"-->
-                <!--android:layout_width="125dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:id="@+id/imageViewJAN"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:padding="15dp" />-->
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -542,6 +535,7 @@
                         android:src="@drawable/feb" />
 
                     <TextView
+                        android:id="@+id/tvCalenderFEB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -575,6 +569,7 @@
                         android:src="@drawable/mar" />
 
                     <TextView
+                        android:id="@+id/tvCalenderMAR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -607,6 +602,7 @@
                         android:src="@drawable/apr" />
 
                     <TextView
+                        android:id="@+id/tvCalenderAPR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -617,14 +613,6 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"/>
                 </FrameLayout>
-
-                <!--<ImageView-->
-                <!--android:src="@drawable/apr"-->
-                <!--android:layout_width="125dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:id="@+id/imageViewAPR"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:padding="15dp" />-->
 
 
                 <FrameLayout
@@ -640,6 +628,7 @@
                         android:src="@drawable/may" />
 
                     <TextView
+                        android:id="@+id/tvCalenderMAY"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -672,6 +661,7 @@
                         android:src="@drawable/jun" />
 
                     <TextView
+                        android:id="@+id/tvCalenderJUN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -705,6 +695,7 @@
                         android:src="@drawable/jul" />
 
                     <TextView
+                        android:id="@+id/tvCalenderJUL"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -737,6 +728,7 @@
                         android:src="@drawable/aug" />
 
                     <TextView
+                        android:id="@+id/tvCalenderAUG"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -769,6 +761,7 @@
                         android:src="@drawable/sep" />
 
                     <TextView
+                        android:id="@+id/tvCalenderSEP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -801,6 +794,7 @@
                         android:src="@drawable/oct" />
 
                     <TextView
+                        android:id="@+id/tvCalenderOCT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -834,6 +828,7 @@
                         android:src="@drawable/nov" />
 
                     <TextView
+                        android:id="@+id/tvCalenderNOV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -866,6 +861,7 @@
                         android:src="@drawable/dec" />
 
                     <TextView
+                        android:id="@+id/tvCalenderDEC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -939,7 +935,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_alignRight="@+id/ivrpt"
                             android:textStyle="bold|italic"
-                            android:text="Click Below Following Icon To Generate Monthly Report For The Last 12 Months"
+                            android:text="Click following below report tools to generate maintainance report for the last 12 months"
                             android:textSize="15sp"
                             android:fontFamily="sans-serif"
                             android:textColor="@color/text_color"/>

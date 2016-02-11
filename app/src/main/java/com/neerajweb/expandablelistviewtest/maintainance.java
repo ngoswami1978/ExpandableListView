@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -146,6 +147,24 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
     private GoogleApiClient client;
 
     private AnimationDrawable d;
+
+    TextView texttvDisprpttext;
+    TextView tvCollectionDisptext;
+
+    TextView tvCalenderJAN;
+    TextView tvCalenderFEB;
+    TextView tvCalenderMAR;
+    TextView tvCalenderAPR;
+    TextView tvCalenderMAY;
+    TextView tvCalenderJUN;
+    TextView tvCalenderJUL;
+    TextView tvCalenderAUG;
+    TextView tvCalenderSEP;
+    TextView tvCalenderOCT;
+    TextView tvCalenderNOV;
+    TextView tvCalenderDEC;
+
+
     TextView textviewjan;
     TextView textviewfeb;
     TextView textviewmar;
@@ -171,6 +190,7 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
     TextView txtviewocttotal;
     TextView txtviewnovtotal;
     TextView txtviewdectotal;
+
     TextView txtviewjantotalamount;
     TextView txtviewfebtotalamount;
     TextView txtviewmartotalamount;
@@ -205,7 +225,6 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintainance);
         IsSaveMaintainance=false;
-
 
         //Code for total Collection using Expandable Bounce effect
         View switcher = findViewById(R.id.switcher);
@@ -309,6 +328,20 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         here series means month name and year
         set these series to the textview
         * */
+        tvCollectionDisptext= (TextView) findViewById(R.id.tvCollectionDisptext);
+        texttvDisprpttext = (TextView) findViewById(R.id.tvDisprpttext);
+        tvCalenderJAN= (TextView) findViewById(R.id.tvCalenderJAN);
+        tvCalenderFEB= (TextView) findViewById(R.id.tvCalenderFEB);
+        tvCalenderMAR= (TextView) findViewById(R.id.tvCalenderMAR);
+        tvCalenderAPR= (TextView) findViewById(R.id.tvCalenderAPR);
+        tvCalenderMAY= (TextView) findViewById(R.id.tvCalenderMAY);
+        tvCalenderJUN= (TextView) findViewById(R.id.tvCalenderJUN);
+        tvCalenderJUL= (TextView) findViewById(R.id.tvCalenderJUL);
+        tvCalenderAUG= (TextView) findViewById(R.id.tvCalenderAUG);
+        tvCalenderOCT= (TextView) findViewById(R.id.tvCalenderSEP);
+        tvCalenderSEP= (TextView) findViewById(R.id.tvCalenderOCT);
+        tvCalenderNOV= (TextView) findViewById(R.id.tvCalenderNOV);
+        tvCalenderDEC= (TextView) findViewById(R.id.tvCalenderDEC);
 
         textviewjan= (TextView) findViewById(R.id.tvDispMaintjan);
         textviewfeb= (TextView) findViewById(R.id.tvDispMaintfeb);
@@ -336,6 +369,7 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         txtviewocttotal= (TextView) findViewById(R.id.txtviewocttotal);
         txtviewnovtotal= (TextView) findViewById(R.id.txtviewnovtotal);
         txtviewdectotal= (TextView) findViewById(R.id.txtviewdectotal);
+
         txtviewjantotalamount= (TextView) findViewById(R.id.txtviewjantotalamount);
         txtviewfebtotalamount= (TextView) findViewById(R.id.txtviewfebtotalamount);
         txtviewmartotalamount= (TextView) findViewById(R.id.txtviewmartotalamount);
@@ -348,6 +382,8 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         txtviewocttotalamount= (TextView) findViewById(R.id.txtviewocttotalamount);
         txtviewnovtotalamount= (TextView) findViewById(R.id.txtviewnovtotalamount);
         txtviewdectotalamount= (TextView) findViewById(R.id.txtviewdectotalamount);
+
+//        setCustomFontface();
 
         myTextViewCompoundDrawablesJAN = textviewjan.getCompoundDrawables();
         myTextViewCompoundDrawablesFEB = textviewfeb.getCompoundDrawables();
@@ -940,6 +976,80 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    private void setCustomFontface(String fontName)
+    {
+        try
+        {
+            if (!fontName.isEmpty()) {
+                // Font path
+                //String fontPath = "fonts/gtw.ttf";
+
+                String fontPath = "fonts/" + fontName;
+                // Loading Font Face
+                Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+                // Applying font
+                tvCollectionDisptext.setTypeface(tf);
+                texttvDisprpttext.setTypeface(tf);
+
+                tvCalenderJAN.setTypeface(tf);
+                tvCalenderFEB.setTypeface(tf);
+                tvCalenderMAR.setTypeface(tf);
+                tvCalenderAPR.setTypeface(tf);
+                tvCalenderMAY.setTypeface(tf);
+                tvCalenderJUN.setTypeface(tf);
+                tvCalenderJUL.setTypeface(tf);
+                tvCalenderAUG.setTypeface(tf);
+                tvCalenderOCT.setTypeface(tf);
+                tvCalenderSEP.setTypeface(tf);
+                tvCalenderNOV.setTypeface(tf);
+                tvCalenderDEC.setTypeface(tf);
+
+                textviewjan.setTypeface(tf);
+                textviewfeb.setTypeface(tf);
+                textviewmar.setTypeface(tf);
+                textviewapr.setTypeface(tf);
+                textviewmay.setTypeface(tf);
+                textviewjun.setTypeface(tf);
+                textviewjul.setTypeface(tf);
+                textviewaug.setTypeface(tf);
+                textviewsep.setTypeface(tf);
+                textviewoct.setTypeface(tf);
+                textviewnov.setTypeface(tf);
+                textviewdec.setTypeface(tf);
+
+                txtviewjantotal.setTypeface(tf);
+                txtviewfebtotal.setTypeface(tf);
+                txtviewmartotal.setTypeface(tf);
+                txtviewaprtotal.setTypeface(tf);
+                txtviewmaytotal.setTypeface(tf);
+                txtviewjuntotal.setTypeface(tf);
+                txtviewjultotal.setTypeface(tf);
+                txtviewaugtotal.setTypeface(tf);
+                txtviewseptotal.setTypeface(tf);
+                txtviewocttotal.setTypeface(tf);
+                txtviewnovtotal.setTypeface(tf);
+                txtviewdectotal.setTypeface(tf);
+
+                txtviewjantotalamount.setTypeface(tf);
+                txtviewfebtotalamount.setTypeface(tf);
+                txtviewmartotalamount.setTypeface(tf);
+                txtviewaprtotalamount.setTypeface(tf);
+                txtviewmaytotalamount.setTypeface(tf);
+                txtviewjuntotalamount.setTypeface(tf);
+                txtviewjultotalamount.setTypeface(tf);
+                txtviewaugtotalamount.setTypeface(tf);
+                txtviewseptotalamount.setTypeface(tf);
+                txtviewocttotalamount.setTypeface(tf);
+                txtviewnovtotalamount.setTypeface(tf);
+                txtviewdectotalamount.setTypeface(tf);
+            }
+        }
+        catch(Exception Ex)
+        {
+            Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // LoadJSON
     private void loadJSONManageRptPeriods() {
         // JSON Node names
@@ -948,6 +1058,8 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
         final String ITEM_MONTHNAME="MonthName";
         final String ITEM_MONTHNAMEYEAR="MonthNameYear";
         final String ITEM_TOTALAMOUNT="Amount";
+        final String ITEM_CUSTOMFONTNAME="customfontName";
+
 
         PD = new ProgressDialog(this);
         PD.setMessage("getting information " + "\n" + "please wait.....");
@@ -981,12 +1093,14 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                                         map.put(ITEM_MONTHNAME,jobj.isNull(ITEM_MONTHNAME) ? "" : jobj.getString(ITEM_MONTHNAME));
                                         map.put(ITEM_MONTHNAMEYEAR, jobj.isNull(ITEM_MONTHNAMEYEAR) ? "" : jobj.getString(ITEM_MONTHNAMEYEAR));
                                         map.put(ITEM_TOTALAMOUNT, jobj.isNull(ITEM_TOTALAMOUNT) ? "" : jobj.getString(ITEM_TOTALAMOUNT));
+                                        map.put(ITEM_CUSTOMFONTNAME, jobj.isNull(ITEM_CUSTOMFONTNAME) ? "" : jobj.getString(ITEM_CUSTOMFONTNAME));
 
                                         model_rptPeriods.setMonth(Integer.parseInt(jobj.getString(ITEM_MONTH)));
                                         model_rptPeriods.setYear(Integer.parseInt(jobj.getString(ITEM_YEAR)));
                                         model_rptPeriods.setMonthName(jobj.isNull(ITEM_MONTHNAME) ? "" : jobj.getString(ITEM_MONTHNAME));
                                         model_rptPeriods.setMonthNameYear(jobj.isNull(ITEM_MONTHNAMEYEAR) ? "" : jobj.getString(ITEM_MONTHNAMEYEAR));
                                         model_rptPeriods.setTotalAmount(jobj.isNull(ITEM_TOTALAMOUNT) ? 0 : Integer.parseInt(jobj.getString(ITEM_TOTALAMOUNT)));
+                                        model_rptPeriods.setcustomfontName(jobj.isNull(ITEM_CUSTOMFONTNAME) ? "" : jobj.getString(ITEM_CUSTOMFONTNAME));
 
                                         objModelMaintainancerptPeriods.add(model_rptPeriods);
                                         fillMaps.add(map);
@@ -1041,6 +1155,7 @@ public class maintainance extends ActionBarActivity implements DateTimePicker.On
                     textviewjan.setText(objperiod.getMonthNameYear());
                     txtviewjantotal.setText(objperiod.getMonthNameYear()  );
                     txtviewjantotalamount.setText(String.valueOf(objperiod.getTotalAmount()));
+                    setCustomFontface(objperiod.getcustomfontName());
                 }
 
                 if (inttotalperiod==10) //design first TextView control
