@@ -8,8 +8,8 @@
 
     <string name="defaultapp_name">Expandable List View</string>
     <string name="maintainanceapp_name">Maintainance</string>
-
-
+    <string name="postcomment_name">PostComment</string>
+    <string name="mywall">TimeLine</string>
     <string name="add">Post</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>

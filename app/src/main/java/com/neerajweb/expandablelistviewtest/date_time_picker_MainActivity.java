@@ -18,7 +18,7 @@ public class date_time_picker_MainActivity extends ActionBarActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.expandable_post_comment_activity_main);
 
         // Create a SimpleDateTimePicker and Show it
         SimpleDateTimePicker simpleDateTimePicker = SimpleDateTimePicker.make(

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.BounceInterpolator;
-import com.neerajweb.expandablelistviewtest.ExpandableLayout;
 
 
 /**
@@ -14,7 +13,7 @@ import com.neerajweb.expandablelistviewtest.ExpandableLayout;
  */
 public class ExpandableBouncerMainActivity extends AppCompatActivity {
 
-    private ExpandableLayout mExpandableLayout;
+    private MaintainanceCollectionExpandableBouncerLayout mMaintainanceCollectionExpandableBouncerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +21,14 @@ public class ExpandableBouncerMainActivity extends AppCompatActivity {
         setContentView(R.layout.expandableview_bounce_main);
 
         View switcher = findViewById(R.id.switcher);
-        mExpandableLayout = (ExpandableLayout) findViewById(R.id.expandableLayout);
-        mExpandableLayout.setSwitcher(switcher);
-        mExpandableLayout.setExpandInterpolator(new BounceInterpolator());
-        mExpandableLayout.setCollapseInterpolator(new AccelerateDecelerateInterpolator());
-        mExpandableLayout.setExpandDuration(800);
-        mExpandableLayout.setCollapseDuration(400);
+        mMaintainanceCollectionExpandableBouncerLayout = (MaintainanceCollectionExpandableBouncerLayout) findViewById(R.id.expandableLayout);
+        mMaintainanceCollectionExpandableBouncerLayout.setSwitcher(switcher);
+        mMaintainanceCollectionExpandableBouncerLayout.setExpandInterpolator(new BounceInterpolator());
+        mMaintainanceCollectionExpandableBouncerLayout.setCollapseInterpolator(new AccelerateDecelerateInterpolator());
+        mMaintainanceCollectionExpandableBouncerLayout.setExpandDuration(800);
+        mMaintainanceCollectionExpandableBouncerLayout.setCollapseDuration(400);
 
-        mExpandableLayout.setOnStateChangedListener(new ExpandableLayout.OnStateChangedListener() {
+        mMaintainanceCollectionExpandableBouncerLayout.setOnStateChangedListener(new MaintainanceCollectionExpandableBouncerLayout.OnStateChangedListener() {
             @Override
             public void onPreExpand() {
                 Log.d("ExpandableLayout", "onPreExpand");
@@ -53,7 +52,7 @@ public class ExpandableBouncerMainActivity extends AppCompatActivity {
         findViewById(R.id.btnTitle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExpandableLayout.toggle();
+                mMaintainanceCollectionExpandableBouncerLayout.toggle();
             }
         });
 

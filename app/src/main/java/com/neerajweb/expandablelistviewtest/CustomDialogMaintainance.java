@@ -97,7 +97,7 @@ public class CustomDialogMaintainance extends Dialog{
             mCancelButton = (ImageView) findViewById(R.id.cancelBtn);
             listView= ( ListView ) findViewById( R.id.detail_list );  // List defined in XML ( See Below )
 
-            //Add Header into maintainance Row (ListView)
+            //Add Header into MaintainanceMain Row (ListView)
             LayoutInflater inflater = getLayoutInflater();
             View rptheader = inflater.inflate(R.layout.activity_rptmaintainance_detail_header_view, listView, false);
             listView.addHeaderView(rptheader, null, false);
@@ -243,7 +243,7 @@ public class CustomDialogMaintainance extends Dialog{
         public rptMaintainance(Activity context) {
             mContext = context;
             PD = new ProgressDialog(mContext);
-            PD.setMessage("Loading Maintainance detail" + "\n" + "please wait.....");
+            PD.setMessage("Loading MaintainanceMain detail" + "\n" + "please wait.....");
             PD.setCancelable(false);
         }
 

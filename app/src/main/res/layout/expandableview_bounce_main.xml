@@ -57,7 +57,7 @@
             android:layout_margin="10dp"
             android:src="@mipmap/arrow" />
     </LinearLayout>
-    <com.neerajweb.expandablelistviewtest.ExpandableLayout
+    <com.neerajweb.expandablelistviewtest.MaintainanceCollectionExpandableBouncerLayout
         android:id="@+id/expandableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -157,6 +157,6 @@
                 android:text="17:00 pm - 18:00 pm"
                 android:textColor="#efafd1" />
         </LinearLayout>
-    </com.neerajweb.expandablelistviewtest.ExpandableLayout>
+    </com.neerajweb.expandablelistviewtest.MaintainanceCollectionExpandableBouncerLayout>
 
 </LinearLayout>

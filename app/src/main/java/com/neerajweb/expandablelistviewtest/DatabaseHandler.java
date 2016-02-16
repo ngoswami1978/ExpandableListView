@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 5;
@@ -144,7 +146,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Getting all Titles
      * returns list of Titles
      **/
-    public ArrayList<DetailInfo> getAllPostsComments(){
+    public ArrayList<modelPostComment> getAllPostsComments(){
         /*
         List<String> titles = new ArrayList<String>();
 
@@ -169,7 +171,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // returning lables
         return titles;
         */
-        ArrayList<DetailInfo> modelDetailInfo = new ArrayList<DetailInfo>();
+        ArrayList<modelPostComment> modelModelPostComment = new ArrayList<modelPostComment>();
         // Select All Query
         String selectQuery = "SELECT T_DTLS_POST_COMMENTS.id,T_DTLS_POST_COMMENTS._Titleid as TitleId,Username,Sequence,title,PostcommentDateTime,Postcomment FROM T_DTLS_POST_COMMENTS INNER JOIN T_MS_POST_TITLE ON T_DTLS_POST_COMMENTS._Titleid = T_MS_POST_TITLE.id order by _Titleid ";
 
@@ -179,7 +181,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                DetailInfo dtlInfo = new DetailInfo();
+                modelPostComment dtlInfo = new modelPostComment();
 
                 dtlInfo.setPostcommentId(cursor.getString(0));
                 dtlInfo.setPostcommentTitleId(cursor.getString(1));
@@ -190,7 +192,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 dtlInfo.setPostcomment(cursor.getString(6));
 
                 // all your column
-                modelDetailInfo.add(dtlInfo);
+                modelModelPostComment.add(dtlInfo);
             } while (cursor.moveToNext());
         }
 
@@ -198,6 +200,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
-        return modelDetailInfo;
+        return modelModelPostComment;
     }
 }

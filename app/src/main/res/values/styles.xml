@@ -12,7 +12,7 @@
     </style>
 
 
-    <!-- Applied on Alert Dialog Message of Maintainance save. -->
+    <!-- Applied on Alert Dialog Message of MaintainanceMain save. -->
     <style name="MyCustomTheme" parent="@android:style/Theme.Panel">
         <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
     </style>
@@ -26,6 +26,6 @@
         <item name="android:windowEnterAnimation">@anim/slide_top_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_bottom_top</item>
     </style>
-    <!-- end Applied on Alert Dialog Message of Maintainance save. -->
+    <!-- end Applied on Alert Dialog Message of MaintainanceMain save. -->
 
 </resources>

@@ -1,0 +1,1180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/date_time"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#660000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btnTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="50dp"
+                    android:src="@mipmap/moneybag" />
+
+                <TextView
+                    android:id="@+id/tvCollectionDisptext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textColor="#efafd1"
+                    android:text="Collection"
+                    android:textSize="35sp" />
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.46"
+                android:gravity="right"
+                android:text=""
+                android:textColor="#fff9ff"
+                android:textSize="10sp"/>
+
+            <ImageView
+                android:id="@+id/switcher"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="top|right"
+                android:layout_margin="10dp"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+        <com.neerajweb.expandablelistviewtest.MaintainanceCollectionExpandableBouncerLayout
+            android:id="@+id/maintainancecollection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#990000"
+            android:orientation="vertical"
+            app:duration="350"
+            app:initialState="expand"
+            app:clickToToggle="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarone" />
+
+                <TextView
+                    android:id="@+id/txtviewjantotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjantotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendartwo" />
+
+                <TextView
+                    android:id="@+id/txtviewfebtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewfebtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarthree" />
+
+                <TextView
+                    android:id="@+id/txtviewmartotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewmartotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarfour" />
+
+                <TextView
+                    android:id="@+id/txtviewaprtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewaprtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarfive" />
+
+                <TextView
+                    android:id="@+id/txtviewmaytotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewmaytotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarsix" />
+
+                <TextView
+                    android:id="@+id/txtviewjuntotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjuntotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarseven" />
+
+                <TextView
+                    android:id="@+id/txtviewjultotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewjultotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendareight" />
+
+                <TextView
+                    android:id="@+id/txtviewaugtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewaugtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarnine" />
+
+                <TextView
+                    android:id="@+id/txtviewseptotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewseptotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendarten" />
+
+                <TextView
+                    android:id="@+id/txtviewocttotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewocttotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendareleven" />
+
+                <TextView
+                    android:id="@+id/txtviewnovtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewnovtotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/calendartwelve" />
+
+                <TextView
+                    android:id="@+id/txtviewdectotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:drawableRight="@drawable/rupee10"
+                    android:textColor="#efafd1" />
+                <TextView
+                    android:id="@+id/txtviewdectotalamount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|right"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="#efafd1" />
+            </LinearLayout>
+
+
+        </com.neerajweb.expandablelistviewtest.MaintainanceCollectionExpandableBouncerLayout>
+
+        <HorizontalScrollView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Pay Maintainance  "
+                    android:gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center|center_vertical"
+                    android:textSize="15sp"
+                    android:fontFamily="@string/abc_action_bar_home_description_format"
+                    android:visibility="gone"
+                    android:background="@drawable/textviewrightborder"
+                    android:textColor="@color/white"
+                    android:id="@+id/tvpayMain" />
+
+                <ImageView
+                    android:src="@drawable/paymentcard"
+                    android:layout_width="150dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imagePay"
+                    android:padding="15dp" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewJAN"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/jan" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderJAN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="JAN"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewFEB"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/feb" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderFEB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="FEB"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/feb"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewFEB"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewMAR"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/mar" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderMAR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="MAR"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/mar"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewMAR"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewAPR"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/apr" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderAPR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="APR"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewMAY"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/may" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderMAY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="MAY"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/may"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewMAY"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewJUN"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/jun" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderJUN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="JUN"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/jun"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewJUN"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewJUL"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/jul" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderJUL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="JUL"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/jul"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewJUL"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewAUG"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/aug" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderAUG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="AUG"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/aug"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewAUG"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewSEP"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/sep" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderSEP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="SEP"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/sep"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewSEP"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewOCT"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/oct" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderOCT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="OCT"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/oct"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewOCT"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewNOV"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/nov" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderNOV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="NOV"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/nov"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewNOV"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imageViewDEC"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:src="@drawable/dec" />
+
+                    <TextView
+                        android:id="@+id/tvCalenderDEC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="115dp"
+                        android:paddingTop="25dp"
+                        android:text="DEC"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                <!--android:src="@drawable/dec"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/imageViewDEC"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="15dp"/>-->
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#00ff00">
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#660000"
+                tools:context="me.vable.android.viewandlayoutlessons.FrameLayoutExampleActivity">
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.neerajweb.expandablelistviewtest.TouchImageView
+                            android:id="@+id/ivrpt"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:clickable="true"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/ic_monthlyreport_text" />
+                        <TextView
+                            android:id="@+id/tvDisprpttext"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingTop="5dp"
+                            android:background="@drawable/textviewbottomborder"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_alignRight="@+id/ivrpt"
+                            android:textStyle="bold|italic"
+                            android:text="Click following below report tools to generate maintainance report for the last 12 months"
+                            android:textSize="15sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/text_color"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintjan"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_january"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintfeb"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_february"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintmar"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_march"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintapr"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_april"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintmay"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_may"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintjun"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_june"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintjul"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_july"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintaug"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_aug"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintsep"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_sep"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintoct"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_october"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:orientation="horizontal"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/tvDispMaintnov"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_nov"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvDispMaintdec"
+                            android:layout_height="match_parent"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:paddingTop="10dip"
+                            android:textStyle="bold"
+                            android:text="Mon Year"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/textviewbottomborder"
+                            android:drawableLeft="@drawable/shape_dec"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center|center"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+        </ScrollView>
+
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_refresh_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/refresh"
+        android:backgroundTint="@color/FloatingActionButtonColor"
+        app:rippleColor="@color/white"
+        app:fabSize="normal"
+        app:borderWidth="0dp"/>
+
+</android.support.design.widget.CoordinatorLayout>

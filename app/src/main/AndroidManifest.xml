@@ -9,6 +9,25 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- -->
+    <!--FaceBook TimeLine  Module Setting-->
+    <!--<application-->
+        <!--android:name="com.neerajweb.expandablelistviewtest.CustomFaceBook.AppController"-->
+        <!--android:icon="@drawable/user"-->
+        <!--android:label="@string/defaultapp_name"-->
+        <!--android:theme="@style/AppTheme" >-->
+        <!--<activity-->
+            <!--android:name="com.neerajweb.expandablelistviewtest.CustomFaceBook.myFaceBoookMainActivity"-->
+            <!--android:label="@string/mywall">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+    <!-- -->
+
+    <!-- -->
+    <!--Post and Comment Module Setting-->
     <application
         android:name=".Maintainance.GlobalClassMyApplicationAppController"
         android:icon="@drawable/user"
@@ -16,8 +35,8 @@
         android:theme="@style/AppTheme" >
         android:supportsRtl="true"
         <activity
-            android:name=".maintainance"
-            android:label="@string/maintainanceapp_name"
+            android:name=".Expandable_Post_Comment_MainActivity"
+            android:label="@string/postcomment_name"
             android:screenOrientation="portrait"
             android:noHistory="true">
             <intent-filter>
@@ -25,6 +44,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- -->
+
+        <!-- -->
+        <!--Maintainance Module Setting-->
+        <!--<activity-->
+            <!--android:name=".MaintainanceMain"-->
+            <!--android:label="@string/maintainanceapp_name"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:noHistory="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!-- -->
+
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

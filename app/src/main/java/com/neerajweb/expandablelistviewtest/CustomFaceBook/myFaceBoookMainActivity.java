@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.widget.ListView;
 
@@ -34,7 +35,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.neerajweb.expandablelistviewtest.R;
 
 
-public class myFaceBoookMainActivity extends Activity {
+public class myFaceBoookMainActivity extends ActionBarActivity {
     private static final String TAG = myFaceBoookMainActivity.class.getSimpleName();
     private ListView listView;
     private FeedListAdapter listAdapter;
@@ -46,62 +47,68 @@ public class myFaceBoookMainActivity extends Activity {
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fb_activity_main);
+        try
+        {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fb_activity_main);
 
-        listView = (ListView) findViewById(R.id.list);
+            listView = (ListView) findViewById(R.id.list);
 
-        feedItems = new ArrayList<FeedItem>();
+            feedItems = new ArrayList<FeedItem>();
 
-        listAdapter = new FeedListAdapter(this, feedItems);
-        listView.setAdapter(listAdapter);
+            listAdapter = new FeedListAdapter(this, feedItems);
+            listView.setAdapter(listAdapter);
 
-        // These two lines not needed,
-        // just to get the look of facebook (changing background color & hiding the icon)
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3b5998")));
-        getActionBar().setIcon(
-                new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            // These two lines not needed,
+            // just to get the look of facebook (changing background color & hiding the icon)
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3b5998")));
+            getSupportActionBar().setIcon(
+                    new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
-        // We first check for cached request
-        Cache cache = AppController.getInstance().getRequestQueue().getCache();
-        Entry entry = cache.get(URL_FEED);
-        if (entry != null) {
-            // fetch the data from cache
-            try {
-                String data = new String(entry.data, "UTF-8");
+            // We first check for cached request
+            Cache cache = AppController.getInstance().getRequestQueue().getCache();
+            Entry entry = cache.get(URL_FEED);
+            if (entry != null) {
+                // fetch the data from cache
                 try {
-                    parseJsonFeed(new JSONObject(data));
-                } catch (JSONException e) {
+                    String data = new String(entry.data, "UTF-8");
+                    try {
+                        parseJsonFeed(new JSONObject(data));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
 
-        } else {
-            // making fresh volley request and getting json
-            JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
-                    URL_FEED, null, new Response.Listener<JSONObject>() {
+            } else {
+                // making fresh volley request and getting json
+                JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
+                        URL_FEED, null, new Response.Listener<JSONObject>() {
 
-                @Override
-                public void onResponse(JSONObject response) {
-                    VolleyLog.d(TAG, "Response: " + response.toString());
-                    if (response != null) {
-                        parseJsonFeed(response);
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        VolleyLog.d(TAG, "Response: " + response.toString());
+                        if (response != null) {
+                            parseJsonFeed(response);
+                        }
                     }
-                }
-            }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
 
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-                }
-            });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    }
+                });
 
-            // Adding request to volley request queue
-            AppController.getInstance().addToRequestQueue(jsonReq);
+                // Adding request to volley request queue
+                AppController.getInstance().addToRequestQueue(jsonReq);
+            }
         }
-
+        catch(Exception Ex)
+        {
+            Ex.printStackTrace();
+        }
     }
 
     /**
