@@ -12,10 +12,11 @@ public class modelPostComment {
     private String Postcomment = "";
     private String LogedInUserName="";
     private String postDatetime="";
+    private int intGroupPosition;
 
     public modelPostComment() {}
 
-    public modelPostComment(String mPostcommentId,String mPostcommentTitleId ,String msequence,String mPostcommentTitle,String mPostcomment,String mLogedInUserName,String mpostDatetime)
+    public modelPostComment(String mPostcommentId,String mPostcommentTitleId ,String msequence,String mPostcommentTitle,String mPostcomment,String mLogedInUserName,String mpostDatetime,int mGroupPosition)
     {
         this.PostcommentId= mPostcommentId;
         this.PostcommentTitleId = mPostcommentTitleId ;
@@ -24,6 +25,7 @@ public class modelPostComment {
         this.Postcomment = mPostcomment;
         this.LogedInUserName=mLogedInUserName;
         this.postDatetime=mpostDatetime;
+        this.intGroupPosition =mGroupPosition;
     }
 
 
@@ -49,4 +51,8 @@ public class modelPostComment {
 
     public String getpostDatetime() {return postDatetime;}
     public void setpostDatetime(String postDatetime) {this.postDatetime = postDatetime;}
+
+    public int getGroupPosition() {return intGroupPosition;}
+    public void setGroupPosition(int GroupPosition) {this.intGroupPosition= GroupPosition;}
+
 }

@@ -35,6 +35,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.neerajweb.expandablelistviewtest.Adapter.adapter_Expandable_Post_Comment;
+import com.neerajweb.expandablelistviewtest.CustomFaceBook.FeedItem;
+import com.neerajweb.expandablelistviewtest.JSONfunctions.resultJSON;
 import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
 import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
 import com.neerajweb.expandablelistviewtest.Model.modelPostCommentHeader;
@@ -58,8 +60,12 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
 
     //private modelPostCommentHeader model_PostCommentheder;
     ArrayList<modelPostCommentHeader> model_PostCommentheder;
+    ArrayList<modelPostComment> model_PostComment;
+    private ArrayList<resultJSON> resultItems;
 
     ProgressDialog PD;
+    ProgressDialog PDPostCommentDetail;
+
     Spinner  spinnerPostCommentHeader;
 
     @Override
@@ -72,6 +78,8 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             objCalender = Calendar.getInstance();
             df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+            resultItems = new ArrayList<resultJSON>();
+
             // Spinner element
             spinnerPostCommentHeader= (Spinner) findViewById(R.id.postTitle);
 
@@ -79,7 +87,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             //loadHeaderData();
 
             //Just add some data to start with
-            loadData();
+//            loadData();
 
             //get reference to the ExpandableListView
             myList = (ExpandableListView) findViewById(R.id.myList);
@@ -111,6 +119,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         super.onResume();
         try {
             loadJSONPostCommentHeaderInfo();
+            loadJSONPostCommentDetailInfo();
         }
         catch  (Exception Ex)
         {
@@ -118,6 +127,84 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         }
     }
 
+    // LoadJSON with post comment details
+    private void loadJSONPostCommentDetailInfo() {
+        // JSON Node names
+        final String ITEM_ID="id";
+        final String ITEM_TITLEID="TitleId";
+        final String ITEM_USERNAME="Username";
+        final String ITEM_SEQUENCE="Sequence";
+        final String ITEM_TITLE="title";
+        final String ITEM_POSTCOMMENTDATETIME="PostcommentDateTime";
+        final String ITEM_POSTCOMMENT="Postcomment";
+
+        PDPostCommentDetail = new ProgressDialog(this);
+        PDPostCommentDetail.setMessage("Refreshing your posts " + "\n" + "please wait.....");
+        PDPostCommentDetail.setCancelable(false);
+
+        try {
+            PDPostCommentDetail.show();
+            StringRequest postRequest = new StringRequest(Request.Method.POST, Const.URL_WS_POST_COMMENT_DETAILS,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                // prepare the list of all records--------
+                                model_PostComment  = new ArrayList<modelPostComment>();
+                                ArrayList<String> Arraylstdetail=new ArrayList<String>();
+                                //----------------------------------------
+                                JSONObject jsonObject = new JSONObject(response);
+                                int success =jsonObject.getInt("success");
+                                if (success == 1) {
+                                    JSONArray ja = jsonObject.getJSONArray("postdetail");
+
+                                    for (int i = 0; i < ja.length(); i++) {
+                                        modelPostComment itemrpop = new modelPostComment();
+                                        JSONObject jobj = ja.getJSONObject(i);
+
+                                        itemrpop.setPostcommentId(jobj.getString(ITEM_ID));
+                                        itemrpop.setPostcommentTitleId(jobj.isNull(ITEM_TITLEID) ? "" : jobj.getString(ITEM_TITLEID));
+                                        itemrpop.setLogedInUserName(jobj.isNull(ITEM_USERNAME) ? "" : jobj.getString(ITEM_USERNAME));
+                                        itemrpop.setSequence(jobj.isNull(ITEM_SEQUENCE) ? "" : jobj.getString(ITEM_SEQUENCE));
+                                        itemrpop.setPostcommentTitle(jobj.isNull(ITEM_TITLE) ? "" : jobj.getString(ITEM_TITLE));
+                                        itemrpop.setpostDatetime(jobj.isNull(ITEM_POSTCOMMENTDATETIME) ? "" : jobj.getString(ITEM_POSTCOMMENTDATETIME));
+                                        itemrpop.setPostcomment(jobj.isNull(ITEM_POSTCOMMENT) ? "" : jobj.getString(ITEM_POSTCOMMENT));
+
+                                        model_PostComment.add(itemrpop);
+                                        Arraylstdetail.add(jobj.isNull(ITEM_TITLE) ? "" : jobj.getString(ITEM_TITLE));
+                                    } // for loop ends
+                                    PDPostCommentDetail.dismiss();
+                                    loadDataToDevice(model_PostComment, Arraylstdetail);
+                                } // if ends
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    PDPostCommentDetail.dismiss();
+                    Toast.makeText(mContext,
+                            "failed to retrive infomations please check your network connection...", Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+//                    params.put("_id",hashmapMonthYear.get("ID"));
+//                    params.put("title",hashmapMonthYear.get("TITLE"));
+                    return params;
+                }
+            };
+
+            // Adding request to request queue
+            GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+        }
+        catch (Exception Ex) {
+            Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
     // LoadJSON with post comment headers
     private void loadJSONPostCommentHeaderInfo() {
         // JSON Node names
@@ -158,7 +245,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                                         Arraylstheader.add(jobj.isNull(ITEM_TITLE) ? "" : jobj.getString(ITEM_TITLE));
                                     } // for loop ends
                                     PD.dismiss();
-                                    reLoadHeader(model_PostCommentheder,Arraylstheader);
+                                    reLoadHeader(model_PostCommentheder, Arraylstheader);
                                 } // if ends
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -227,37 +314,51 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         }
     }
 
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
+    try
+        {
+            switch (v.getId()) {
 
-        switch (v.getId()) {
+                //add entry to the List
+                case R.id.addPost:
 
-            //add entry to the List
-            case R.id.addPost:
+                    Spinner spinner = (Spinner) findViewById(R.id.postTitle);
+                    TextView textView = (TextView)spinner.getSelectedView();
+                    String title = textView.getText().toString();
+                    String userName= "N";// set Logged in User Name later on
 
-                Spinner spinner = (Spinner) findViewById(R.id.postTitle);
-                TextView textView = (TextView)spinner.getSelectedView();
-                String title = textView.getText().toString();
+                    //String title = spinner.getSelectedItem().toString();
+                    EditText editText = (EditText) findViewById(R.id.etPostOrComments);
+                    String postcomments = editText.getText().toString();
+                    editText.setText("");
 
-                //String title = spinner.getSelectedItem().toString();
-                EditText editText = (EditText) findViewById(R.id.etPostOrComments);
-                String postcomments = editText.getText().toString();
-                editText.setText("");
+                    //add a new item to the list
+    //                int groupPosition = addTitleAndPostsInListView(lngTitleId,title, postcomments);
 
-                //add a new item to the list
-                int groupPosition = addTitleAndPostsInListView(lngTitleId,title, postcomments);
-                //notify the list so that changes can take effect
-                listAdapter.notifyDataSetChanged();
 
-                //collapse all groups
-                collapseAll();
-                //expand the group where item was just added
-                myList.expandGroup(groupPosition);
-                //set the current group to be selected so that it becomes visible
-                myList.setSelectedGroup(groupPosition);
+                    savePostAndCommentsIntoServer(lngTitleId, title, postcomments, userName);
 
-                break;
+//                    int groupPosition = savePostAndCommentsIntoServer(lngTitleId, title, postcomments, userName);
 
-                // More buttons go here (if any) ...
+//                    //notify the list so that changes can take effect
+//                    listAdapter.notifyDataSetChanged();
+//
+//                    //collapse all groups
+//                    collapseAll();
+//                    //expand the group where item was just added
+//                    myList.expandGroup(groupPosition);
+//                    //set the current group to be selected so that it becomes visible
+//                    myList.setSelectedGroup(groupPosition);
+
+                    break;
+
+                    // More buttons go here (if any) ...
+            }
+        }
+        catch(Exception Ex)
+        {
+            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
         }
     }
 
@@ -292,6 +393,26 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         }
     }
 
+    //load data into expandable list from server
+    private void loadDataToDevice(ArrayList<modelPostComment> objPostArray,ArrayList<String> Arraylstdetail){
+        long lgTitleid;
+        try
+        {
+            if (objPostArray.size()>0)
+            {
+                for(modelPostComment dtls: objPostArray)
+                {
+                   lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
+                   addTitleAndPostsIntoExpandableList(lgTitleid, dtls.getPostcommentTitle(), dtls.getPostcomment(), dtls.getLogedInUserName(), dtls.getpostDatetime(), dtls.getSequence());
+                }
+            }
+        }
+        catch (Exception Ex)
+        {
+            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+        }
+    }
+
     //load some initial data into out list
     private void loadData(){
         long lgTitleid;
@@ -302,15 +423,15 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
             // get all List of Post and comments from database and update the List View
-            ArrayList<modelPostComment> titles = db.getAllPostsComments();
+            ArrayList<modelPostComment> objPostArray = db.getAllPostsComments();
 
-            if (titles.size()>0)
+            if (objPostArray.size()>0)
             {
-                for(modelPostComment dtls: titles)
+                for(modelPostComment dtls: objPostArray)
                 {
-                   lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
-                   addTitleAndPostsInListView(lgTitleid,dtls.getPostcommentTitle(),dtls.getPostcomment());
-                   //Toast.makeText(this,titles.indexOf(dtls) , Toast.LENGTH_LONG).show();
+                    lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
+                    addTitleAndPostsInListView(lgTitleid,dtls.getPostcommentTitle(),dtls.getPostcomment());
+                    //Toast.makeText(this,titles.indexOf(dtls) , Toast.LENGTH_LONG).show();
                 }
             }
             else
@@ -332,18 +453,26 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         }
     }
 
+
     //our child listener
     private OnChildClickListener myListItemClicked =  new OnChildClickListener() {
         public boolean onChildClick(ExpandableListView parent, View v,
                                     int groupPosition, int childPosition, long id) {
+            try
+            {
+                //get the group header
+                Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = titleList.get(groupPosition);
+                //get the child info
+                modelPostComment modelPostComment =  expandablePostCommentHeaderInfo.getCommentList().get(childPosition);
+                //display it or do something with it
+                Toast.makeText(getBaseContext(), "Clicked on Detail " + expandablePostCommentHeaderInfo.getName()
+                        + "/" + modelPostComment.getPostcomment(), Toast.LENGTH_LONG).show();
+            }
+            catch(Exception Ex)
+            {
+                Toast.makeText(getBaseContext(),Ex.getMessage() , Toast.LENGTH_LONG).show();
+            }
 
-            //get the group header
-            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = titleList.get(groupPosition);
-            //get the child info
-            modelPostComment modelPostComment =  expandablePostCommentHeaderInfo.getCommentList().get(childPosition);
-            //display it or do something with it
-            Toast.makeText(getBaseContext(), "Clicked on Detail " + expandablePostCommentHeaderInfo.getName()
-                    + "/" + modelPostComment.getPostcomment(), Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -354,17 +483,240 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
 
         public boolean onGroupClick(ExpandableListView parent, View v,
                                     int groupPosition, long id) {
-
-            //get the group header
-            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = titleList.get(groupPosition);
-            //display it or do something with it
-            Toast.makeText(getBaseContext(), "Child on Header " + expandablePostCommentHeaderInfo.getName(),
-                    Toast.LENGTH_LONG).show();
+            try
+            {
+                //get the group header
+                Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = titleList.get(groupPosition);
+                //display it or do something with it
+                Toast.makeText(getBaseContext(), "Child on Header " + expandablePostCommentHeaderInfo.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+            catch(Exception Ex)
+            {
+                Toast.makeText(getBaseContext(), Ex.getMessage() ,Toast.LENGTH_LONG).show();
+            }
 
             return false;
         }
 
     };
+
+    //Load data to Expandable View
+    private int addTitleAndPostsIntoExpandableList(long intTitleId, String title, String postcomments, String username,String datetime,String sequence ){
+        int groupPosition = 0;
+        try
+        {
+            //check the hash map if the group already exists
+            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = mypostTitle.get(title);
+            //add the group if doesn't exists
+            if(expandablePostCommentHeaderInfo == null){
+                expandablePostCommentHeaderInfo = new Expandable_Post_Comment_HeaderInfo();
+                expandablePostCommentHeaderInfo.setName(title);
+                mypostTitle.put(title, expandablePostCommentHeaderInfo);
+                titleList.add(expandablePostCommentHeaderInfo);
+            }
+
+            //get the children for the group
+            ArrayList<modelPostComment> postcommentList = expandablePostCommentHeaderInfo.getCommentList();
+            //size of the children list
+            int listSize = postcommentList.size();
+            //add to the counter
+            listSize++;
+
+            //String formattedDate = df.format(objCalender.getInstance().getTime());
+            String formattedDate = datetime;
+
+            //create a new child and add that to the group
+            modelPostComment modelPostComment = new modelPostComment();
+            modelPostComment.setPostcommentId(String.valueOf(intTitleId));
+            modelPostComment.setSequence(String.valueOf(sequence));
+            modelPostComment.setPostcomment(postcomments);
+            modelPostComment.setLogedInUserName(username); // default Neeraj later on implement the Login User Name
+            modelPostComment.setpostDatetime(formattedDate);
+
+            postcommentList.add(0, modelPostComment);
+            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+
+            //find the group position inside the list
+            groupPosition = titleList.indexOf(expandablePostCommentHeaderInfo);
+            //return groupPosition;
+        }
+        catch   (Exception Ex)
+        {
+            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+        }
+        return groupPosition;
+    }
+
+    //save Post and comment to database server using Web Service
+    private int savePostAndCommentsIntoServer(final long intTitleId, final String title, final String postcomments,final String username){
+        int groupPosition=0;
+        // JSON Node names
+        final String ITEM_SEQUENCE="sequence";
+        final String ITEM_TITLEID="titleid";
+        final String ITEM_USERNAME="username";
+        final String ITEM_POSTCOMMENTDATETIME="postcommentdatetime";
+        final String ITEM_POSTCOMMENT="postcomment";
+
+        try
+        {
+            int listSize = 5; //manually entered it will later on updated by server only
+            String formattedDate = df.format(objCalender.getInstance().getTime()); //manually entered it will later on updated by server only
+
+            //create a new child and add that to the group
+            final modelPostComment modelPostComment = new modelPostComment();
+            modelPostComment.setPostcommentTitleId(String.valueOf(intTitleId));
+            modelPostComment.setPostcommentTitle(title);
+            modelPostComment.setSequence(String.valueOf(listSize));
+            modelPostComment.setPostcomment(postcomments);
+            modelPostComment.setLogedInUserName(username); // default Neeraj later on implement the Login User Name
+            modelPostComment.setpostDatetime(formattedDate);
+
+            PDPostCommentDetail = new ProgressDialog(this);
+            PDPostCommentDetail.setMessage("posting " + "\n" + "please wait.....");
+            PDPostCommentDetail.setCancelable(false);
+
+            try {
+                PDPostCommentDetail.show();
+                StringRequest postRequest = new StringRequest(Request.Method.POST, Const.URL_WS_CRUD_POST_COMMENT,
+                        new Response.Listener<String>() {
+
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    // prepare the list of all records--------
+                                    model_PostComment  = new ArrayList<modelPostComment>();
+                                    //----------------------------------------
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    ArrayList<resultJSON> resultjsonobj = new ArrayList<resultJSON>();
+                                    resultjsonobj = parseJsonResult(jsonObject);
+
+                                    int success =resultjsonobj.get(0).getSuccess();
+                                    int groupPosition = 0;
+                                    long retid;
+                                    if (success == 1) {
+                                        PDPostCommentDetail.dismiss();
+
+                                        retid = resultjsonobj.get(0).getId();
+                                        modelPostComment.setPostcommentId(String.valueOf(retid));
+
+                                        groupPosition=  displayPostToExpandableView(modelPostComment);
+                                        modelPostComment.setGroupPosition(groupPosition);
+                                    } // if ends
+                                } catch (JSONException e) {
+                                    PDPostCommentDetail.dismiss();
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    PDPostCommentDetail.dismiss();
+                                    Toast.makeText(mContext,
+                                            "failed to retrive infomations please check your network connection...", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(ITEM_SEQUENCE,modelPostComment.getSequence());
+                                    params.put(ITEM_TITLEID,modelPostComment.getPostcommentTitleId());
+                                    params.put(ITEM_USERNAME,modelPostComment.getLogedInUserName());
+                                    params.put(ITEM_POSTCOMMENTDATETIME,modelPostComment.getpostDatetime());
+                                    params.put(ITEM_POSTCOMMENT,modelPostComment.getPostcomment());
+                                    return params;
+                                }
+                            };
+                // Adding request to request queue
+                GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+            }
+            catch (Exception Ex) {
+                Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch   (Exception Ex)
+        {
+            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+        }
+        return groupPosition;
+    }
+
+    private int displayPostToExpandableView(modelPostComment modelPostComment)
+    {
+        int groupPosition = 0;
+        try
+        {
+//            check the hash map if the group already exists
+            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = mypostTitle.get(modelPostComment.getPostcommentTitle());
+
+            //add the group if doesn't exists
+            if(expandablePostCommentHeaderInfo == null){
+                expandablePostCommentHeaderInfo = new Expandable_Post_Comment_HeaderInfo();
+                expandablePostCommentHeaderInfo.setName(modelPostComment.getPostcommentTitle());
+                mypostTitle.put(modelPostComment.getPostcommentTitle(), expandablePostCommentHeaderInfo);
+                titleList.add(expandablePostCommentHeaderInfo);
+            }
+
+//            get the children for the group
+            ArrayList<modelPostComment> postcommentList = expandablePostCommentHeaderInfo.getCommentList();
+//            size of the children list
+            int listSize = postcommentList.size();
+//            add to the counter
+            listSize++;
+            String formattedDate = df.format(objCalender.getInstance().getTime());
+
+            postcommentList.add(0, modelPostComment);
+            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+
+//            find the group position inside the list
+            groupPosition = titleList.indexOf(expandablePostCommentHeaderInfo);
+
+//            notify the list so that changes can take effect
+            listAdapter.notifyDataSetChanged();
+//            collapse all groups
+            collapseAll();
+//            expand the group where item was just added
+            myList.expandGroup(groupPosition);
+//            set the current group to be selected so that it becomes visible
+            myList.setSelectedGroup(groupPosition);
+        }
+        catch(Exception Ex)
+        {
+            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+        }
+        return groupPosition;
+    }
+
+    /**
+     * Parsing json reponse and passing the data to feed view list adapter
+     * */
+    private ArrayList<resultJSON> parseJsonResult(JSONObject response) {
+        resultJSON item= new resultJSON();
+        try {
+            JSONArray feedArray = response.getJSONArray("result");
+            for (int i = 0; i < feedArray.length(); i++) {
+                JSONObject feedObj = (JSONObject) feedArray.get(i);
+                if (i==0)
+                {
+                    item.setId(feedObj.getInt("postId"));
+                }
+                else if(i==1)
+                {
+                    item.setSuccess(feedObj.getInt("success"));
+                }
+                else if(i==2)
+                {
+                    item.setMessage(feedObj.getString("message"));
+                }
+            }
+            resultItems.add(item);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return resultItems;
+    }
 
     //here we maintain our Comments and post in various Titles
     private int addTitleAndPostsInListView(long intTitleId, String title, String postcomments){
