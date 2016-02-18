@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Expandable_Post_Comment_HeaderInfo {
 
     private String name;
-    private ArrayList<modelPostComment> commentList = new ArrayList<modelPostComment>();;
+    private ArrayList<modelPostComment> commentList = new ArrayList<modelPostComment>();
 
     public String getName() {
         return name;

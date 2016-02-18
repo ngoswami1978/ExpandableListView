@@ -1,11 +1,10 @@
 package com.neerajweb.expandablelistviewtest;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +34,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.neerajweb.expandablelistviewtest.Adapter.adapter_Expandable_Post_Comment;
-import com.neerajweb.expandablelistviewtest.CustomFaceBook.FeedItem;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.resultJSON;
 import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
 import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
@@ -61,7 +59,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
     //private modelPostCommentHeader model_PostCommentheder;
     ArrayList<modelPostCommentHeader> model_PostCommentheder;
     ArrayList<modelPostComment> model_PostComment;
-    private ArrayList<resultJSON> resultItems;
+    private ArrayList<resultJSON> resultNewPosts;
 
     ProgressDialog PD;
     ProgressDialog PDPostCommentDetail;
@@ -77,8 +75,6 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         try {
             objCalender = Calendar.getInstance();
             df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-            resultItems = new ArrayList<resultJSON>();
 
             // Spinner element
             spinnerPostCommentHeader= (Spinner) findViewById(R.id.postTitle);
@@ -149,7 +145,6 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                         @Override
                         public void onResponse(String response) {
                             try {
-
                                 // prepare the list of all records--------
                                 model_PostComment  = new ArrayList<modelPostComment>();
                                 ArrayList<String> Arraylstdetail=new ArrayList<String>();
@@ -332,28 +327,8 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                     EditText editText = (EditText) findViewById(R.id.etPostOrComments);
                     String postcomments = editText.getText().toString();
                     editText.setText("");
-
-                    //add a new item to the list
-    //                int groupPosition = addTitleAndPostsInListView(lngTitleId,title, postcomments);
-
-
                     savePostAndCommentsIntoServer(lngTitleId, title, postcomments, userName);
-
-//                    int groupPosition = savePostAndCommentsIntoServer(lngTitleId, title, postcomments, userName);
-
-//                    //notify the list so that changes can take effect
-//                    listAdapter.notifyDataSetChanged();
-//
-//                    //collapse all groups
-//                    collapseAll();
-//                    //expand the group where item was just added
-//                    myList.expandGroup(groupPosition);
-//                    //set the current group to be selected so that it becomes visible
-//                    myList.setSelectedGroup(groupPosition);
-
                     break;
-
-                    // More buttons go here (if any) ...
             }
         }
         catch(Exception Ex)
@@ -403,7 +378,9 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                 for(modelPostComment dtls: objPostArray)
                 {
                    lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
-                   addTitleAndPostsIntoExpandableList(lgTitleid, dtls.getPostcommentTitle(), dtls.getPostcomment(), dtls.getLogedInUserName(), dtls.getpostDatetime(), dtls.getSequence());
+                   addTitleAndPostsIntoExpandableList(lgTitleid, dtls.getPostcommentTitle()
+                           , dtls.getPostcomment(), dtls.getLogedInUserName(), dtls.getpostDatetime(), dtls.getSequence()
+                           ,dtls.getPostcommentId());
                 }
             }
         }
@@ -414,44 +391,44 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
     }
 
     //load some initial data into out list
-    private void loadData(){
-        long lgTitleid;
-        try
-        {
-            // Connect to database and Load Cursor Object
-            // database handler
-            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-
-            // get all List of Post and comments from database and update the List View
-            ArrayList<modelPostComment> objPostArray = db.getAllPostsComments();
-
-            if (objPostArray.size()>0)
-            {
-                for(modelPostComment dtls: objPostArray)
-                {
-                    lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
-                    addTitleAndPostsInListView(lgTitleid,dtls.getPostcommentTitle(),dtls.getPostcomment());
-                    //Toast.makeText(this,titles.indexOf(dtls) , Toast.LENGTH_LONG).show();
-                }
-            }
-            else
-            {
-                addTitleAndPostsInListView(1,"MaintainanceMain?", "hey guys ! pls let me know what is the MaintainanceMain cost per month.");
-                addTitleAndPostsInListView(1,"MaintainanceMain?", "1K for 1 BHK");
-                addTitleAndPostsInListView(1,"MaintainanceMain?", "1.5K for 2 BHK");
-
-                addTitleAndPostsInListView(2,"Laundry Facilities?", "Who is doing Laundry work can anybody le me know?");
-                addTitleAndPostsInListView(2,"Laundry Facilities?", "Upper Shopper Stopper");
-
-                addTitleAndPostsInListView(6,"Parking?", "hi! please clear the bikes from ground floor");
-                addTitleAndPostsInListView(6,"Parking?","hi ! can anyone let me know who is th owner of white alto?");
-            }
-        }
-        catch (Exception Ex)
-        {
-            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
-        }
-    }
+//    private void loadData(){
+//        long lgTitleid;
+//        try
+//        {
+//            // Connect to database and Load Cursor Object
+//            // database handler
+//            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+//
+//            // get all List of Post and comments from database and update the List View
+//            ArrayList<modelPostComment> objPostArray = db.getAllPostsComments();
+//
+//            if (objPostArray.size()>0)
+//            {
+//                for(modelPostComment dtls: objPostArray)
+//                {
+//                    lgTitleid = Long.parseLong(dtls.getPostcommentTitleId());
+//                    addTitleAndPostsInListView(lgTitleid,dtls.getPostcommentTitle(),dtls.getPostcomment());
+//                    //Toast.makeText(this,titles.indexOf(dtls) , Toast.LENGTH_LONG).show();
+//                }
+//            }
+//            else
+//            {
+//                addTitleAndPostsInListView(1,"MaintainanceMain?", "hey guys ! pls let me know what is the MaintainanceMain cost per month.");
+//                addTitleAndPostsInListView(1,"MaintainanceMain?", "1K for 1 BHK");
+//                addTitleAndPostsInListView(1,"MaintainanceMain?", "1.5K for 2 BHK");
+//
+//                addTitleAndPostsInListView(2,"Laundry Facilities?", "Who is doing Laundry work can anybody le me know?");
+//                addTitleAndPostsInListView(2,"Laundry Facilities?", "Upper Shopper Stopper");
+//
+//                addTitleAndPostsInListView(6,"Parking?", "hi! please clear the bikes from ground floor");
+//                addTitleAndPostsInListView(6,"Parking?","hi ! can anyone let me know who is th owner of white alto?");
+//            }
+//        }
+//        catch (Exception Ex)
+//        {
+//            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 
     //our child listener
@@ -501,8 +478,8 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
 
     };
 
-    //Load data to Expandable View
-    private int addTitleAndPostsIntoExpandableList(long intTitleId, String title, String postcomments, String username,String datetime,String sequence ){
+    //Load initial values and Add the same Title and Posts into Expandable View
+    private int addTitleAndPostsIntoExpandableList(long lngTitleId, String title, String postcomments, String username,String datetime,String sequence,String postCommentId ){
         int groupPosition = 0;
         try
         {
@@ -528,7 +505,9 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
 
             //create a new child and add that to the group
             modelPostComment modelPostComment = new modelPostComment();
-            modelPostComment.setPostcommentId(String.valueOf(intTitleId));
+            modelPostComment.setPostcommentId(postCommentId);
+            modelPostComment.setPostcommentTitleId(String.valueOf(lngTitleId));
+            modelPostComment.setPostcommentTitle(title);
             modelPostComment.setSequence(String.valueOf(sequence));
             modelPostComment.setPostcomment(postcomments);
             modelPostComment.setLogedInUserName(username); // default Neeraj later on implement the Login User Name
@@ -548,7 +527,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
         return groupPosition;
     }
 
-    //save Post and comment to database server using Web Service
+    //save Post and comment into database server using PHP Web Service
     private int savePostAndCommentsIntoServer(final long intTitleId, final String title, final String postcomments,final String username){
         int groupPosition=0;
         // JSON Node names
@@ -560,7 +539,25 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
 
         try
         {
-            int listSize = 5; //manually entered it will later on updated by server only
+//            check the hash map if the group already exists
+            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = mypostTitle.get(title);
+
+            //add the group if doesn't exists
+            if(expandablePostCommentHeaderInfo == null){
+                expandablePostCommentHeaderInfo = new Expandable_Post_Comment_HeaderInfo();
+                expandablePostCommentHeaderInfo.setName(title);
+                mypostTitle.put(title, expandablePostCommentHeaderInfo);
+                titleList.add(expandablePostCommentHeaderInfo);
+            }
+
+//            get the children for the group
+            ArrayList<modelPostComment> postcommentList = expandablePostCommentHeaderInfo.getCommentList();
+//            size of the children list
+            int listSize = postcommentList.size();
+//            add to the counter
+            listSize++;
+
+            //int listSize = 5; //manually entered it will later on updated by server only
             String formattedDate = df.format(objCalender.getInstance().getTime()); //manually entered it will later on updated by server only
 
             //create a new child and add that to the group
@@ -570,7 +567,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             modelPostComment.setSequence(String.valueOf(listSize));
             modelPostComment.setPostcomment(postcomments);
             modelPostComment.setLogedInUserName(username); // default Neeraj later on implement the Login User Name
-            modelPostComment.setpostDatetime(formattedDate);
+            modelPostComment.setpostDatetime(formattedDate);// Server date is updated through PHP webservice, so here no use of formattedDate
 
             PDPostCommentDetail = new ProgressDialog(this);
             PDPostCommentDetail.setMessage("posting " + "\n" + "please wait.....");
@@ -596,10 +593,8 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                                     long retid;
                                     if (success == 1) {
                                         PDPostCommentDetail.dismiss();
-
                                         retid = resultjsonobj.get(0).getId();
                                         modelPostComment.setPostcommentId(String.valueOf(retid));
-
                                         groupPosition=  displayPostToExpandableView(modelPostComment);
                                         modelPostComment.setGroupPosition(groupPosition);
                                     } // if ends
@@ -646,6 +641,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
     private int displayPostToExpandableView(modelPostComment modelPostComment)
     {
         int groupPosition = 0;
+        int resultNewItemsSize = 0;
         try
         {
 //            check the hash map if the group already exists
@@ -667,8 +663,34 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             listSize++;
             String formattedDate = df.format(objCalender.getInstance().getTime());
 
-            postcommentList.add(0, modelPostComment);
-            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+
+            //** The New Post and Comment append into postcommentList
+            // so that in every post we will get the updated records fromm all the Users
+            //**
+            try
+            {
+                resultNewItemsSize = resultNewPosts.get(0).getCommentList().size();
+                if (resultNewItemsSize>=1)
+                {
+                    //for (int i=0; i< resultNewItemsSize ;i++)
+                    for (int i=resultNewItemsSize-1; i >= 0 ;i--)
+                    {
+                        //postcommentList.add(0, modelPostComment);
+                        postcommentList.add(0, resultNewPosts.get(0).getCommentList().get(i));
+                        expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+                    }
+                }
+            }
+            catch(Exception Ex)
+            {
+                //If any error comes we will set the last post in 0 position.
+                postcommentList.add(0, modelPostComment);
+                expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+            }
+
+//            postcommentList.add(0, modelPostComment);
+//            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+
 
 //            find the group position inside the list
             groupPosition = titleList.indexOf(expandablePostCommentHeaderInfo);
@@ -694,6 +716,18 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
      * */
     private ArrayList<resultJSON> parseJsonResult(JSONObject response) {
         resultJSON item= new resultJSON();
+        resultNewPosts = new ArrayList<resultJSON>();
+        //get the children for the group
+        ArrayList<modelPostComment> postcommentList = item.getCommentList();
+
+        String  ITEM_ID = "id";
+        String  ITEM_TITLEID = "TitleId";
+        String  ITEM_USERNAME = "Username";
+        String  ITEM_SEQUENCE = "Sequence";
+        String  ITEM_TITLE = "title";
+        String  ITEM_POSTCOMMENTDATETIME = "PostcommentDateTime";
+        String  ITEM_POSTCOMMENT = "Postcomment";
+
         try {
             JSONArray feedArray = response.getJSONArray("result");
             for (int i = 0; i < feedArray.length(); i++) {
@@ -710,72 +744,96 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                 {
                     item.setMessage(feedObj.getString("message"));
                 }
+                else if(i>=3)
+                {
+                    Iterator<String> iter = feedObj.keys();
+                    while (iter.hasNext()) {
+                        String key = iter.next();
+                        try {
+                            JSONObject jobj = (JSONObject) feedObj.get(key);
+
+                            modelPostComment itemrpop = new modelPostComment();
+                            itemrpop.setPostcommentId(String.valueOf(jobj.get(ITEM_ID)));
+                            itemrpop.setPostcommentTitleId(jobj.isNull(ITEM_TITLEID) ? "" : jobj.getString(ITEM_TITLEID));
+                            itemrpop.setLogedInUserName(jobj.isNull(ITEM_USERNAME) ? "" : jobj.getString(ITEM_USERNAME));
+                            itemrpop.setSequence(jobj.isNull(ITEM_SEQUENCE) ? "" : jobj.getString(ITEM_SEQUENCE));
+                            itemrpop.setPostcommentTitle(jobj.isNull(ITEM_TITLE) ? "" : jobj.getString(ITEM_TITLE));
+                            itemrpop.setpostDatetime(jobj.isNull(ITEM_POSTCOMMENTDATETIME) ? "" : jobj.getString(ITEM_POSTCOMMENTDATETIME));
+                            itemrpop.setPostcomment(jobj.isNull(ITEM_POSTCOMMENT) ? "" : jobj.getString(ITEM_POSTCOMMENT));
+                            postcommentList.add(0, itemrpop);
+                            item.setCommentList(postcommentList);
+
+                        } catch (JSONException e) {
+                            // Something went wrong!
+                        }
+                    }
+                }
             }
-            resultItems.add(item);
+            resultNewPosts.add(item);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return resultItems;
+        return resultNewPosts;
     }
 
     //here we maintain our Comments and post in various Titles
-    private int addTitleAndPostsInListView(long intTitleId, String title, String postcomments){
-        int groupPosition = 0;
-        try
-        {
-            //check the hash map if the group already exists
-            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = mypostTitle.get(title);
-            //add the group if doesn't exists
-            if(expandablePostCommentHeaderInfo == null){
-                expandablePostCommentHeaderInfo = new Expandable_Post_Comment_HeaderInfo();
-                expandablePostCommentHeaderInfo.setName(title);
-                mypostTitle.put(title, expandablePostCommentHeaderInfo);
-                titleList.add(expandablePostCommentHeaderInfo);
-
-                /* No need to Add Title into Database table
-                * we already inserted all the default values of titles into database on OncreateAvtivity method
-                * in main activity
-                */
-            }
-
-            //get the children for the group
-            ArrayList<modelPostComment> postcommentList = expandablePostCommentHeaderInfo.getCommentList();
-            //size of the children list
-            int listSize = postcommentList.size();
-            //add to the counter
-            listSize++;
-
-            String formattedDate = df.format(objCalender.getInstance().getTime());
-
-            /* * Write here code to Insert comments and post into databaase */
-            // database handler
-            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-            lngTitleId = intTitleId;
-            long retid = db.insertPostComment(String.valueOf(listSize),lngTitleId, "Neeraj Goswami",formattedDate, postcomments);
-            /* * */
-
-            //create a new child and add that to the group
-            modelPostComment modelPostComment = new modelPostComment();
-            modelPostComment.setPostcommentId(String.valueOf(retid));
-            modelPostComment.setSequence(String.valueOf(listSize));
-            modelPostComment.setPostcomment(postcomments);
-            modelPostComment.setLogedInUserName("N"); // default Neeraj later on implement the Login User Name
-            modelPostComment.setpostDatetime(formattedDate);
-
-            postcommentList.add(0, modelPostComment);
-            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
-
-            //find the group position inside the list
-            groupPosition = titleList.indexOf(expandablePostCommentHeaderInfo);
-            //return groupPosition;
-            db.close();
-        }
-        catch   (Exception Ex)
-        {
-            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
-        }
-        return groupPosition;
-    }
+//    private int addTitleAndPostsInListView(long intTitleId, String title, String postcomments){
+//        int groupPosition = 0;
+//        try
+//        {
+//            //check the hash map if the group already exists
+//            Expandable_Post_Comment_HeaderInfo expandablePostCommentHeaderInfo = mypostTitle.get(title);
+//            //add the group if doesn't exists
+//            if(expandablePostCommentHeaderInfo == null){
+//                expandablePostCommentHeaderInfo = new Expandable_Post_Comment_HeaderInfo();
+//                expandablePostCommentHeaderInfo.setName(title);
+//                mypostTitle.put(title, expandablePostCommentHeaderInfo);
+//                titleList.add(expandablePostCommentHeaderInfo);
+//
+//                /* No need to Add Title into Database table
+//                * we already inserted all the default values of titles into database on OncreateAvtivity method
+//                * in main activity
+//                */
+//            }
+//
+//            //get the children for the group
+//            ArrayList<modelPostComment> postcommentList = expandablePostCommentHeaderInfo.getCommentList();
+//            //size of the children list
+//            int listSize = postcommentList.size();
+//            //add to the counter
+//            listSize++;
+//
+//            String formattedDate = df.format(objCalender.getInstance().getTime());
+//
+//            /* * Write here code to Insert comments and post into databaase */
+//            // database handler
+//            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+//            lngTitleId = intTitleId;
+//            long retid = db.insertPostComment(String.valueOf(listSize),lngTitleId, "Neeraj Goswami",formattedDate, postcomments);
+//            /* * */
+//
+//            //create a new child and add that to the group
+//            modelPostComment modelPostComment = new modelPostComment();
+//            modelPostComment.setPostcommentId(String.valueOf(retid));
+//            modelPostComment.setSequence(String.valueOf(listSize));
+//            modelPostComment.setPostcomment(postcomments);
+//            modelPostComment.setLogedInUserName("N"); // default Neeraj later on implement the Login User Name
+//            modelPostComment.setpostDatetime(formattedDate);
+//
+//            postcommentList.add(0, modelPostComment);
+//            expandablePostCommentHeaderInfo.setCommentList(postcommentList);
+//
+//            //find the group position inside the list
+//            groupPosition = titleList.indexOf(expandablePostCommentHeaderInfo);
+//            //return groupPosition;
+//            db.close();
+//        }
+//        catch   (Exception Ex)
+//        {
+//            Toast.makeText(this,Ex.getMessage() , Toast.LENGTH_LONG).show();
+//        }
+//        return groupPosition;
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
