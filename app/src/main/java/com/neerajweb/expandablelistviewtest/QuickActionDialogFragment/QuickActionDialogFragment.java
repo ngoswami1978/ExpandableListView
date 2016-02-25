@@ -76,7 +76,7 @@ public abstract class QuickActionDialogFragment extends DialogFragment {
 
 
     /**
-     * Is this dialog will be dismissed when user touch outside?
+     * Is this dialog will be dismissed when profileuser touch outside?
      *
      * @return
      */

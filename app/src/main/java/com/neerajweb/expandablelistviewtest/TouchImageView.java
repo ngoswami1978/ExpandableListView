@@ -945,7 +945,7 @@ public class TouchImageView extends ImageView {
 
                 //
                 // OnTouchImageViewListener is set: TouchImageView dragged by
-                // user.
+                // profileuser.
                 //
                 if (touchImageViewListener != null) {
                     touchImageViewListener.onMove();
@@ -962,7 +962,7 @@ public class TouchImageView extends ImageView {
     }
 
     /**
-     * ScaleListener detects user two finger scaling and scales image.
+     * ScaleListener detects profileuser two finger scaling and scales image.
      *
      * @author Ortiz
      *
@@ -982,7 +982,7 @@ public class TouchImageView extends ImageView {
 
             //
             // OnTouchImageViewListener is set: TouchImageView pinch zoomed by
-            // user.
+            // profileuser.
             //
             if (touchImageViewListener != null) {
                 touchImageViewListener.onMove();
@@ -1262,7 +1262,7 @@ public class TouchImageView extends ImageView {
 
             //
             // OnTouchImageViewListener is set: TouchImageView listener has been
-            // flung by user.
+            // flung by profileuser.
             // Listener runnable updated with each frame of fling animation.
             //
             if (touchImageViewListener != null) {

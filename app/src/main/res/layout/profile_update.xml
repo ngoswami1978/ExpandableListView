@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codetail.widget.RevealFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <android.support.v7.widget.CardView
+        android:id="@+id/login_card"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="10dp">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/shape_rounded_crimson_rect"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/imageview_profile"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left"
+            android:src="@drawable/profileuser"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="OWNER DETAIL"
+            android:textColor="@color/material_login_register_color"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etOwnerFirstname"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:hint="First name*"
+            android:inputType="textCapSentences"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+        <EditText
+            android:id="@+id/etOwnerLastname"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:hint="Last Name*"
+            android:inputType="textCapSentences"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Age*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etOwnerAge"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Location*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+        <com.neerajweb.expandablelistviewtest.CustomAutoCompleteTextView
+            android:id="@+id/atvOwner_places"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textStyle="italic"
+            android:paddingLeft="20dp"
+            android:textSize="18dp"
+            android:hint="Type City,State,Country auto fill" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleInverse"
+            android:id="@+id/prBarOwnerLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_alignBottom="@id/atvOwner_places"
+            android:layout_alignRight="@id/atvOwner_places"
+            android:layout_alignTop="@id/atvOwner_places" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Address*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etOwnerAddress"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:lines="5"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:minLines="5"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="20dp"
+            android:hint="Addres"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Phone Number*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etOwnerPhoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:textSize="18dp"
+            android:lines="1"
+            android:maxLength="14"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Additional Email Id (optional)"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etOwnerEmail"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="User name"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etOwnerUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="100" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RENTER DETAIL"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/material_login_register_color"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/etRenterFirstname"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:hint="First name*"
+            android:inputType="textCapSentences"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+        <EditText
+            android:id="@+id/etRenterLastname"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:hint="Last Name*"
+            android:inputType="textCapSentences"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Age*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etRenterAge"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Location*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <com.neerajweb.expandablelistviewtest.CustomAutoCompleteTextView
+                android:id="@+id/atvRenter_places"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textStyle="italic"
+                android:paddingLeft="20dp"
+                android:textSize="12dp"
+                android:hint="Type City,State,Country auto fill" />
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:id="@+id/prBarRenterLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_alignBottom="@id/atvRenter_places"
+                android:layout_alignRight="@id/atvRenter_places"
+                android:layout_alignTop="@id/atvRenter_places" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Address*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etRenterAddress"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:lines="5"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:minLines="5"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="20dp"
+            android:hint="Addres"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Phone Number*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etRenterPhoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:inputType="phone"
+            android:maxLength="14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Email Id*"
+            android:textSize="12dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etRenterEmail"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:selectAllOnFocus="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:maxLength="50" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:text="Update"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/material_login_register_text_color"
+            android:background="@drawable/shape_rounded_crimson_rect" />
+        <!--<include-->
+            <!--android:id="@+id/footerView"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--layout="@layout/footer" />-->
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
+</android.support.v7.widget.CardView>
+</io.codetail.widget.RevealFrameLayout>

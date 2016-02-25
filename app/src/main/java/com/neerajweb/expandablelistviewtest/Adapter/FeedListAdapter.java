@@ -106,7 +106,7 @@ public class FeedListAdapter extends BaseAdapter {
             url.setVisibility(View.GONE);
         }
 
-        // user profile pic
+        // profileuser profile pic
         profilePic.setImageUrl(item.getProfilePic(), imageLoader);
 
         // Feed image

@@ -147,7 +147,7 @@ public class DateTimePicker extends DialogFragment {
     private class ButtonClickListener implements DialogInterface.OnClickListener {
         @Override
         public void onClick(DialogInterface dialogInterface, int result) {
-            // Determine if the user selected Ok
+            // Determine if the profileuser selected Ok
             if(DialogInterface.BUTTON_POSITIVE == result) {
                 DateTime mDateTime = new DateTime(
                         mDatePicker.getYear(),

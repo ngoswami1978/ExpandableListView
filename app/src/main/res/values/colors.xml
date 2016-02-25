@@ -10,6 +10,7 @@
     <color name="red">#660000</color>
     <color name="darkblue">#151b54</color>
     <color name="FloatingActionButtonColor">#FF1493</color>
+    <color name="black">#000</color>
 
     <color name="genre">#666666</color>
     <color name="year">#888888</color>
@@ -23,7 +24,13 @@
     <color name="list_row_hover_end_color">#b30000</color>
 
 
-
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="material_login_login_color">#FFFFFF</color>
+    <color name="material_login_register_color">#FF4081</color>
+    <color name="material_login_login_error_color">#ff5151</color>
+    <color name="material_login_register_error_color">#ffcdce</color>
+    <color name="material_login_login_text_color">#000</color>
+    <color name="material_login_register_text_color">#000</color>
 
 
 </resources>

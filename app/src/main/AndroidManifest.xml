@@ -10,10 +10,30 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- -->
+    <!--Login,Register and Profile Update Module Setting-->
+    <application
+        android:name=".Maintainance.GlobalClassMyApplicationAppController"
+        android:icon="@drawable/profileuser"
+        android:label="@string/defaultapp_name"
+        android:theme="@style/AppTheme" >
+        android:supportsRtl="true"
+        <activity
+            android:name=".ProfileUpdate"
+            android:label="ProfileUpdate"
+            android:screenOrientation="portrait"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+    <!-- -->
     <!--FaceBook TimeLine  Module Setting-->
     <!--<application-->
         <!--android:name="com.neerajweb.expandablelistviewtest.CustomFaceBook.AppController"-->
-        <!--android:icon="@drawable/user"-->
+        <!--android:icon="@drawable/profileuser"-->
         <!--android:label="@string/defaultapp_name"-->
         <!--android:theme="@style/AppTheme" >-->
         <!--<activity-->
@@ -28,22 +48,22 @@
 
     <!-- -->
     <!--Post and Comment Module Setting-->
-    <application
-        android:name=".Maintainance.GlobalClassMyApplicationAppController"
-        android:icon="@drawable/user"
-        android:label="@string/defaultapp_name"
-        android:theme="@style/AppTheme" >
-        android:supportsRtl="true"
-        <activity
-            android:name=".Expandable_Post_Comment_MainActivity"
-            android:label="@string/postcomment_name"
-            android:screenOrientation="portrait"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    <!--<application-->
+        <!--android:name=".Maintainance.GlobalClassMyApplicationAppController"-->
+        <!--android:icon="@drawable/profileuser"-->
+        <!--android:label="@string/defaultapp_name"-->
+        <!--android:theme="@style/AppTheme" >-->
+        <!--android:supportsRtl="true"-->
+        <!--<activity-->
+            <!--android:name=".Expandable_Post_Comment_MainActivity"-->
+            <!--android:label="@string/postcomment_name"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:noHistory="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
         <!-- -->
 
         <!-- -->

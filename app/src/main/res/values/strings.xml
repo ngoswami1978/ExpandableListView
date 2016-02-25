@@ -22,6 +22,15 @@
 
     <string name="PayMaintaincence">Maintainance</string>
 
+    <string name="login">LOGIN</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="go">GO</string>
+    <string name="register">REGISTER</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="next">NEXT</string>
+    <string name="footer_text">Copyright © 2015 Neeraj Apps Inc.</string>
+
     <string-array name="paymentmode">
         <item>Cash</item>
         <item>Cheque</item>
@@ -39,6 +48,6 @@
         <item>Renters?</item>
         <item>basic Rules?</item>
     </string-array>
-
     <color name="snow">#eee9e9</color>
+    <string name="Flat_prompt">Choose a Flat</string>
 </resources>
