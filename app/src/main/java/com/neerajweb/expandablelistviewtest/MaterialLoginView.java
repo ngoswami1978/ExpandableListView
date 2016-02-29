@@ -3,6 +3,7 @@ package com.neerajweb.expandablelistviewtest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,11 +31,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.memberJSON;
+import com.neerajweb.expandablelistviewtest.JSONfunctions.result_MemberJSON;
+import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
+import com.neerajweb.expandablelistviewtest.Model.modelMember;
 import com.neerajweb.expandablelistviewtest.utils.Const;
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
@@ -49,8 +61,18 @@ public class MaterialLoginView extends FrameLayout {
     private TextView registerBtn;
     private TextView registerTitle;
     private TextInputLayout registerUser;
-    private TextInputLayout registerPass;
-    private TextInputLayout registerPassRep;
+    private Spinner flatspinner;
+
+    public int intFlatId;
+    private Context myContext;
+    ProgressDialog PDLoadMember;
+    ArrayList<modelMember> model_Member;
+    private ArrayList<result_MemberJSON> resultMember;
+
+
+//    private TextInputLayout registerPass;
+//    private TextInputLayout registerPassRep;
+
     private TextView loginTitle;
     private TextInputLayout loginUser;
     private TextInputLayout loginPass;
@@ -61,7 +83,8 @@ public class MaterialLoginView extends FrameLayout {
     private View loginCard;
     private View registerView;
     private View registerCard;
-    private Spinner flatspinner;
+    private int intFlag;
+
     ArrayList<String> Arraylst_Spinner_Member;
     JSONObject jsonobject;
     JSONArray jsonarray;
@@ -72,6 +95,11 @@ public class MaterialLoginView extends FrameLayout {
 
     public MaterialLoginView(Context context) {
         this(context, null);
+    }
+
+    public MaterialLoginView(Context context,int _intFlag) {
+        this(context, null);
+        intFlag=_intFlag;
     }
 
     public MaterialLoginView(Context context, AttributeSet attrs) {
@@ -86,7 +114,9 @@ public class MaterialLoginView extends FrameLayout {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public MaterialLoginView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        myContext= context;
         init(context, attrs);
+
     }
 
     private void init(Context context, AttributeSet attrs) {
@@ -104,8 +134,10 @@ public class MaterialLoginView extends FrameLayout {
         registerCard = findViewById(R.id.register_card);
         registerTitle = (TextView) findViewById(R.id.register_title);
         registerUser = (TextInputLayout) findViewById(R.id.register_user);
-        registerPass = (TextInputLayout) findViewById(R.id.register_pass);
-        registerPassRep = (TextInputLayout) findViewById(R.id.register_pass_rep);
+
+//        registerPass = (TextInputLayout) findViewById(R.id.register_pass);
+//        registerPassRep = (TextInputLayout) findViewById(R.id.register_pass_rep);
+
         flatspinner=(Spinner) findViewById(R.id.flatspinner);
         registerBtn = (TextView) findViewById(R.id.register_btn);
 
@@ -116,7 +148,8 @@ public class MaterialLoginView extends FrameLayout {
         registerBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onRegister(registerUser, registerPass, registerPassRep);
+//                listener.onRegister(registerUser, registerPass, registerPassRep);
+                listener.onRegister(registerUser, flatspinner);
             }
         });
 
@@ -178,15 +211,15 @@ public class MaterialLoginView extends FrameLayout {
                 registerUser.setHint(string);
             }
 
-            string = a.getString(R.styleable.MaterialLoginView_registerPasswordHint);
-            if (string != null) {
-                registerPass.setHint(string);
-            }
-
-            string = a.getString(R.styleable.MaterialLoginView_registerRepeatPasswordHint);
-            if (string != null) {
-                registerPassRep.setHint(string);
-            }
+//            string = a.getString(R.styleable.MaterialLoginView_registerPasswordHint);
+//            if (string != null) {
+//                registerPass.setHint(string);
+//            }
+//
+//            string = a.getString(R.styleable.MaterialLoginView_registerRepeatPasswordHint);
+//            if (string != null) {
+//                registerPassRep.setHint(string);
+//            }
 
             string = a.getString(R.styleable.MaterialLoginView_registerActionText);
             if (string != null) {
@@ -199,20 +232,19 @@ public class MaterialLoginView extends FrameLayout {
 
             color = a.getColor(R.styleable.MaterialLoginView_registerTextColor, ContextCompat.getColor(getContext(), R.color.material_login_register_text_color));
             registerUser.getEditText().setTextColor(color);
-            registerPass.getEditText().setTextColor(color);
-            registerPassRep.getEditText().setTextColor(color);
+
+//            registerPass.getEditText().setTextColor(color);
+//            registerPassRep.getEditText().setTextColor(color);
 
             registerFab.setImageResource(
                     a.getResourceId(R.styleable.MaterialLoginView_registerIcon, R.drawable.ic_add_white));
 
             try {
-                // Download JSON data AsyncTask
-                new DownloadFlatMasterJSON().execute();
+                    // Download JSON data AsyncTask
+                    new DownloadFlatMasterJSON().execute();
             }
             catch(Exception Ex)
-            {
-
-            }
+            {}
 
         } finally {
             a.recycle();
@@ -289,7 +321,7 @@ public class MaterialLoginView extends FrameLayout {
                     member.add(memberpop);
 
                     // Populate spinner with flat name
-                    Arraylst_Spinner_Member.add(jsonobject.optString("flt_no") + "," +jsonobject.optString("flt_type"));
+                    Arraylst_Spinner_Member.add(jsonobject.optString("flt_no") + " , " +jsonobject.optString("flt_type"));
                 }
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
@@ -302,7 +334,6 @@ public class MaterialLoginView extends FrameLayout {
         protected void onPostExecute(Void args) {
             try
             {
-                //progressDialog.dismiss();
                 if (!(Arraylst_Spinner_Member.isEmpty())) {
                     // Setting Flat Spinner adapter
                     flatspinner.setAdapter(new ArrayAdapter<String>(getContext() , R.layout.spinner_item, Arraylst_Spinner_Member));
@@ -321,6 +352,7 @@ public class MaterialLoginView extends FrameLayout {
                                 return;
                             }
                             else {
+                                intFlatId= member.get(position).getfltid();
                                 Toast.makeText(getContext(), String.valueOf(member.get(position).getfltid()), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -330,6 +362,10 @@ public class MaterialLoginView extends FrameLayout {
                         }
                     });
                 }
+                else
+                {
+                    Toast.makeText(getContext(),"Network error , check your network connection and try again", Toast.LENGTH_SHORT).show();
+                }
                 progressDialog.cancel();
             } catch (Exception e) {
                 Error = e.getMessage();
@@ -338,6 +374,42 @@ public class MaterialLoginView extends FrameLayout {
         }
     }
 
+    public ArrayList<result_MemberJSON> parseJsonResult(JSONObject response) {
+        result_MemberJSON item= new result_MemberJSON();
+        resultMember= new ArrayList<result_MemberJSON>();
+        //get the children for the group
+        ArrayList<modelMember> memberList = item.getMemberList();
+
+        String ITEM_OWNER_ID="Owner_id";
+        String ITEM_APPROVE_STATUS="approve_status";
+        String ITEM_OWNER_NAME="Owner_name";
+        String ITEM_SUCCESS="success";
+        String ITEM_MESSAGE="message";
+
+        //response.getJSONObject("result").get("flt_id")
+        modelMember itemrpop = new modelMember();
+        Iterator<String> iter = response.keys();
+        try {
+            while (iter.hasNext())
+            {
+                String key = iter.next();
+                JSONObject jobj = (JSONObject) response.get(key);
+
+                item.setOwner_id(jobj.isNull(ITEM_OWNER_ID) ? "" : jobj.getString(ITEM_OWNER_ID));
+                item.setSuccess(jobj.isNull(ITEM_SUCCESS) ? 0 : Integer.parseInt(jobj.getString(ITEM_SUCCESS)));
+                item.setMessage(jobj.isNull(ITEM_MESSAGE) ? "" : jobj.getString(ITEM_MESSAGE));
+                itemrpop.setOwner_id(jobj.isNull(ITEM_OWNER_ID) ? "" : jobj.getString(ITEM_OWNER_ID));
+                itemrpop.setapprove_status(jobj.isNull(ITEM_APPROVE_STATUS) ? "" : jobj.getString(ITEM_APPROVE_STATUS));
+                itemrpop.setOwner_name(jobj.isNull(ITEM_OWNER_NAME) ? "" : jobj.getString(ITEM_OWNER_NAME));
+                memberList.add(0, itemrpop);
+                item.setMemberList(memberList);
+            }
+        } catch (JSONException e) {
+            // Something went wrong!
+        }
+        resultMember.add(item);
+        return resultMember;
+    }
 
     private void animateRegister() {
         Path path = new Path();
@@ -383,7 +455,6 @@ public class MaterialLoginView extends FrameLayout {
         return ViewAnimationUtils.createCircularReveal(
                 view, centerX, centerY, startRadius, endRadius);
     }
-
 
     private void animateLogin() {
         registerCancel.animate().scaleX(0F).scaleY(0F).alpha(0F).rotation(90F).

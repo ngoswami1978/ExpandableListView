@@ -251,7 +251,6 @@ public class CustomDialogMaintainance extends Dialog{
             try {
                 PD.show();
 
-
                 StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override

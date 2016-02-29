@@ -14,13 +14,31 @@
         app:loginHint="Email"
         app:loginPasswordHint="Password"
         app:loginTextColor="@color/material_login_register_color"
-        app:loginTitle="Customized login"
+        app:loginTitle="LOGIN"
         app:registerActionText="SIGN UP"
         app:registerHint="Email"
         app:registerIcon="@drawable/ic_person_add_white"
-        app:registerPasswordHint="Password"
-        app:registerRepeatPasswordHint="Confirmed Password"
         app:registerTextColor="@color/colorAccent"
         app:registerTitle="Join us"
         app:registerSelectFlatTextColor="@color/colorAccent"/>
+
+    <!--<com.neerajweb.expandablelistviewtest.MaterialLoginView-->
+        <!--android:id="@+id/login"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+
+        <!--app:loginActionText="LOGIN"-->
+        <!--app:loginHint="Email"-->
+        <!--app:loginPasswordHint="Password"-->
+        <!--app:loginTextColor="@color/material_login_register_color"-->
+        <!--app:loginTitle="Customized login"-->
+        <!--app:registerActionText="SIGN UP"-->
+        <!--app:registerHint="Email"-->
+        <!--app:registerIcon="@drawable/ic_person_add_white"-->
+        <!--app:registerPasswordHint="Password"-->
+        <!--app:registerRepeatPasswordHint="Confirmed Password"-->
+        <!--app:registerTextColor="@color/colorAccent"-->
+        <!--app:registerTitle="Join us"-->
+        <!--app:registerSelectFlatTextColor="@color/colorAccent"/>-->
+    <!-- -->
 </FrameLayout>

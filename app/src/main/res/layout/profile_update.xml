@@ -41,6 +41,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:text="Show notifications"
+            android:textColor="@color/material_login_register_color"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="75dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bgtoggle"
+                android:button="@null"
+                android:textOff=""
+                android:textOn="" />
+
+            <TextView
+                android:id="@+id/tvstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="18dp"
+                android:paddingLeft="10sp"
+                android:layout_toRightOf="@+id/toggleButton1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleInverse"
+                android:id="@+id/prBarGCMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:paddingLeft="20sp"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/material_login_register_color"
+                android:layout_alignBottom="@id/tvstate"
+                android:layout_alignRight="@id/tvstate"
+                android:layout_alignTop="@id/tvstate" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="OWNER DETAIL"
             android:textColor="@color/material_login_register_color"
             android:textSize="20sp" />
@@ -50,14 +98,13 @@
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
-            android:hint="First name*"
+            android:hint="First Name*"
             android:inputType="textCapSentences"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
             android:paddingLeft="20dp"
             android:singleLine="true"
-            android:maxLength="50" />
+            android:maxLength="25" />
         <EditText
             android:id="@+id/etOwnerLastname"
             android:layout_width="match_parent"
@@ -67,10 +114,9 @@
             android:inputType="textCapSentences"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
             android:paddingLeft="20dp"
             android:singleLine="true"
-            android:maxLength="50" />
+            android:maxLength="25" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +132,6 @@
             android:hint="Age"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
             android:paddingLeft="20dp"
             android:singleLine="true"
             android:maxLength="3" />
@@ -110,7 +155,8 @@
             android:textStyle="italic"
             android:paddingLeft="20dp"
             android:textSize="18dp"
-            android:hint="Type City,State,Country auto fill" />
+            android:maxLength="100"
+            android:hint="Type City,State,Country" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleInverse"
@@ -133,7 +179,6 @@
             android:id="@+id/etOwnerAddress"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
@@ -147,7 +192,8 @@
             android:scrollbars="vertical"
             android:layout_marginBottom="20dp"
             android:hint="Addres"
-            android:inputType="textMultiLine"/>
+            android:maxLength="150"
+            android:inputType="textMultiLine|textCapSentences"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -164,7 +210,7 @@
             android:lines="1"
             android:maxLength="14"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:singleLine="true"
@@ -172,7 +218,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Additional Email Id (optional)"
+            android:text="Additional Email Id (Optional)"
             android:textSize="12dp"
             android:paddingLeft="20dp"
             android:layout_height="wrap_content" />
@@ -184,14 +230,14 @@
             android:hint="Email"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:singleLine="true"
             android:maxLength="50" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="User name"
+            android:text="User name (Default register email)"
             android:textSize="12dp"
             android:paddingLeft="20dp"
             android:layout_height="wrap_content" />
@@ -201,11 +247,12 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:singleLine="true"
-            android:maxLength="100" />
+            android:maxLength="50" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -221,14 +268,14 @@
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
-            android:hint="First name*"
+            android:hint="First Name*"
             android:inputType="textCapSentences"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:paddingLeft="20dp"
             android:singleLine="true"
-            android:maxLength="50" />
+            android:maxLength="25" />
         <EditText
             android:id="@+id/etRenterLastname"
             android:layout_width="match_parent"
@@ -238,10 +285,10 @@
             android:inputType="textCapSentences"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:paddingLeft="20dp"
             android:singleLine="true"
-            android:maxLength="50" />
+            android:maxLength="25" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -257,7 +304,7 @@
             android:hint="Age"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:paddingLeft="20dp"
             android:singleLine="true"
             android:maxLength="3" />
@@ -281,6 +328,7 @@
                 android:textStyle="italic"
                 android:paddingLeft="20dp"
                 android:textSize="12dp"
+                android:maxLength="100"
                 android:hint="Type City,State,Country auto fill" />
             <ProgressBar
                 style="?android:attr/progressBarStyleSmall"
@@ -303,7 +351,7 @@
             android:id="@+id/etRenterAddress"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
@@ -317,7 +365,8 @@
             android:scrollbars="vertical"
             android:layout_marginBottom="20dp"
             android:hint="Addres"
-            android:inputType="textMultiLine"/>
+            android:maxLength="150"
+            android:inputType="textMultiLine|textCapSentences"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -333,7 +382,7 @@
             android:hint="Phone"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:singleLine="true"
@@ -354,7 +403,7 @@
             android:hint="email"
             android:textSize="12dp"
             android:textStyle="italic"
-            android:selectAllOnFocus="true"
+
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:singleLine="true"
@@ -369,6 +418,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/material_login_register_text_color"
             android:background="@drawable/shape_rounded_crimson_rect" />
+
         <!--<include-->
             <!--android:id="@+id/footerView"-->
             <!--android:layout_width="fill_parent"-->

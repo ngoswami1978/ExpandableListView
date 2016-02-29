@@ -9,4 +9,7 @@ public class Const {
 	public static final String URL_WS_POST_COMMENT_DETAILS="http://myandroidng.com/Apartment/WS/ws_postcomment_detail.php";
 	public static final String URL_WS_CRUD_POST_COMMENT="http://myandroidng.com/Apartment/WS/ws_crud_postcomment.php";
 	public static final String URL_WS_CRUD_LOGIN="http://myandroidng.com/Apartment/WS/ws_crud_login.php";
+	public static final String APARTMENTGCMREGISTRATIONID="ApartmentGCMRegistrationId";
+
+
 }

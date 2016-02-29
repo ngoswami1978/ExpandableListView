@@ -43,6 +43,7 @@ public class memberJSON {
             response = conn.getResponseCode();
             is = new BufferedInputStream(conn.getInputStream());
 
+
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());
             Log.e("log_tag", "Error in http connection " + e.toString());

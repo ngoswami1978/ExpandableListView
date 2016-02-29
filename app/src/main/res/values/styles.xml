@@ -1,6 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light" >
+        <item name="android:windowSoftInputMode">stateHidden</item>
     <item name="colorAccent">#FF4081</item>
     <item name="android:textColorPrimary">@color/red</item>
         <item name="android:dropDownListViewStyle">@style/mySpinnerStyle</item>

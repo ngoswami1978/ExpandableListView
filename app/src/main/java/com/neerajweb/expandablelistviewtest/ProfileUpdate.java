@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -38,16 +40,22 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.AutoCompleteTextView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.PlaceJSONParser;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.resultJSON;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.result_MemberJSON;
@@ -55,6 +63,10 @@ import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicatio
 import com.neerajweb.expandablelistviewtest.Model.modelMember;
 import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
 import com.neerajweb.expandablelistviewtest.utils.Const;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
 
 /**
  * Created by Admin on 23/02/2016.
@@ -64,6 +76,15 @@ import com.neerajweb.expandablelistviewtest.utils.Const;
 
 public class ProfileUpdate extends Activity implements View.OnClickListener {
 
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    GoogleCloudMessaging gcmObj;
+
+    public static final String REG_ID = "regId";
+    public static final String EMAIL_ID = "eMailId";
+    public String mYregistrationId;
+
+    ToggleButton tButton;
+    TextView tvStateofToggleButton;
     private Button btnUpdate;
     private EditText etOwnerPhoneno,etRenterPhoneno;
     private EditText etOwnerFirstname,etOwnerLastname,etOwnerAge,etOwnerAddress,etOwnerEmail,etOwnerUser;
@@ -76,6 +97,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
 
     ProgressDialog PDLoadMember;
     public Context mContext;
+    Context applicationContext;
 
     PlacesTask placesTask;
     ParserTask parserTask;
@@ -85,6 +107,10 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
     ProgressBar prBarOwnerLocation;
     ProgressBar prBarRenterLocation;
 
+    ProgressBar prBarGCMid;
+
+
+
     private int keyDel;
 
     @Override
@@ -92,9 +118,11 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_update);
         mContext = this;
+        applicationContext = getApplicationContext();
 
         prBarOwnerLocation=(ProgressBar) findViewById(R.id.prBarOwnerLocation);
         prBarRenterLocation=(ProgressBar) findViewById(R.id.prBarRenterLocation);
+        prBarGCMid=(ProgressBar) findViewById(R.id.prBarGCMid);
 
         etOwnerFirstname=(EditText) findViewById(R.id.etOwnerFirstname);
         etOwnerLastname=(EditText) findViewById(R.id.etOwnerLastname);
@@ -102,6 +130,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         etOwnerAddress=(EditText) findViewById(R.id.etOwnerAddress);
         etOwnerEmail=(EditText) findViewById(R.id.etOwnerEmail);
         etOwnerUser=(EditText) findViewById(R.id.etOwnerUser);
+        etOwnerUser.setKeyListener(null);
 
         etRenterFirstname=(EditText) findViewById(R.id.etRenterFirstname);
         etRenterLastname=(EditText) findViewById(R.id.etRenterLastname);
@@ -109,6 +138,26 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         etRenterAddress=(EditText) findViewById(R.id.etRenterAddress);
         etRenterEmail=(EditText) findViewById(R.id.etRenterEmail);
 
+
+        tButton = (ToggleButton) findViewById(R.id.toggleButton1);
+        tvStateofToggleButton=(TextView)findViewById(R.id.tvstate);
+        tvStateofToggleButton.setText("OFF");
+        tButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                if(isChecked){
+//                    tvStateofToggleButton.setText("ON");
+                    if (checkPlayServices()) {
+                        // Register Device in GCM Server
+                        registerInBackground(etOwnerUser.getText().toString());
+                    }
+                }else{
+                    tvStateofToggleButton.setText("OFF");
+                    mYregistrationId="";
+                }
+            }
+        });
 
         //validation on edit text all
         this.etOwnerFirstname.addTextChangedListener(new TextWatcher() {
@@ -314,8 +363,77 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
             }
         });
 
+        SharedPreferences prefs = getSharedPreferences(Const.APARTMENTGCMREGISTRATIONID,
+                Context.MODE_PRIVATE);
+        String registrationId = prefs.getString(REG_ID, "");
+
+        if (!TextUtils.isEmpty(registrationId)) {
+            mYregistrationId=registrationId;
+        }
         Loaddata();
     }
+
+    // AsyncTask to register Device in GCM Server
+    private void registerInBackground(final String emailID) {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (gcmObj == null) {
+                        gcmObj = GoogleCloudMessaging
+                                .getInstance(applicationContext);
+                    }
+                    mYregistrationId = gcmObj
+                            .register(ApplicationConstants .GOOGLE_PROJ_ID);
+                    msg = "Registration ID :" + mYregistrationId;
+
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                }
+                return msg;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                tvStateofToggleButton.setText("Connecting your device...");
+                prBarGCMid.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                prBarGCMid.setVisibility(View.INVISIBLE);
+                if (!TextUtils.isEmpty(mYregistrationId)) {
+                    storeRegIdinSharedPref(applicationContext, mYregistrationId, emailID);
+                    Toast.makeText(
+                            applicationContext,
+                            "Registered with GCM Server successfully.\n\n"
+                                    + msg, Toast.LENGTH_SHORT).show();
+                } else {
+                    tButton.setChecked(false);
+                    tvStateofToggleButton.setText("OFF");
+                    Toast.makeText(
+                            applicationContext,
+                            "Reg ID Creation Failed.\n\nEither you haven't enabled Internet or GCM server is busy right now. Make sure you enabled Internet and try registering again after some time."
+                                    + msg, Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(null, null, null);
+    }
+    // Store RegId and Email entered by User in SharedPref
+    private void storeRegIdinSharedPref(Context context, String regId,String emailID) {
+        SharedPreferences prefs = getSharedPreferences(Const.APARTMENTGCMREGISTRATIONID,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(REG_ID, regId);
+        editor.putString(EMAIL_ID, emailID);
+        editor.commit();
+
+        tButton.setChecked(true);
+        tvStateofToggleButton.setText("ON");
+    }
+
 
     private void Loaddata()
     {
@@ -351,7 +469,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
             //create a new child and add that to the group
             final modelMember _modelMember = new modelMember();
             PDLoadMember = new ProgressDialog(this);
-            PDLoadMember.setTitle("Processing...");
+            PDLoadMember.setTitle("Getting information");
             PDLoadMember.setMessage("Please wait...");
             PDLoadMember.setCancelable(false);
 
@@ -415,14 +533,23 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
     {
         try
         {
+            if (!TextUtils.isEmpty(memberList.get(0).getgcmregid())){
+                tButton.setChecked(true);
+                tvStateofToggleButton.setText("ON");
+            }
+            else{
+                tButton.setChecked(false);
+                tvStateofToggleButton.setText("OFF");
+            }
+
             etOwnerPhoneno.setText(memberList.get(0).getOwner_contact());
             etRenterPhoneno.setText(memberList.get(0).getRenter_contact());
             etOwnerFirstname.setText(memberList.get(0).getOwner_name());
             etOwnerLastname.setText(memberList.get(0).getOwner_LastName());
             etOwnerAge.setText(memberList.get(0).getAge());
             etOwnerAddress.setText(memberList.get(0).getOwner_Address());
-            etOwnerEmail.setText(memberList.get(0).getemail());
-            etOwnerUser.setText(memberList.get(0).getusr());
+            etOwnerEmail.setText(memberList.get(0).getOwner_email());
+            etOwnerUser.setText(memberList.get(0).getemail()); //For android application the user should be login registered emailid and for web site user should be userName field
             etRenterFirstname.setText(memberList.get(0).getRenter_name());
             etRenterLastname.setText(memberList.get(0).getRenter_LastName());
             etRenterAge.setText(memberList.get(0).getRenter_age());
@@ -804,15 +931,17 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnUpdate:
-//                startActivity(new Intent(ProfileUpdate.this,StringRequestActivity.class));
                 /*
                 Validation class will check the error and display the error on respective fields
                 but it won't resist the form submission, so we need to check again before submit
                  */
                 if (checkValidation())
-                    //submitForm();
+                {
                     //Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
                     Snackbar.make(v, "Updating your profile please wait...!", Snackbar.LENGTH_LONG).show();
+                    modelMember _modelMember= getProfileData(v);
+                    submitForm(v,_modelMember);
+                }
                 else
                     //Toast.makeText(this, "Form contains error", Toast.LENGTH_LONG).show();
                     Snackbar.make(v, "Form contains error please fill proper!", Snackbar.LENGTH_LONG).show();
@@ -820,6 +949,182 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkPlayServices();
+    }
+    // Check if Google Playservices is installed in Device or not
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        // When Play services not found in device
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                // Show Error dialog to install Play services
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Toast.makeText(
+                        applicationContext,
+                        "This device doesn't support Play services, App will not work normally",
+                        Toast.LENGTH_LONG).show();
+                finish();
+            }
+            return false;
+        } else {
+            Toast.makeText(
+                    applicationContext,
+                    "This device supports Play services, App will work normally",
+                    Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
+
+    private void submitForm(View v,final modelMember modelMember)
+    {
+        try
+        {
+            final String ITEM_OWNER_ID="Owner_id";
+            final String ITEM_SUBMIT_TYPE="submit_type";
+            final String ITEM_USR="usr";
+            final String ITEM_GCMREGID="gcmregid";
+            final String ITEM_OWNER_NAME="Owner_name";
+            final String ITEM_OWNER_CONTACT="Owner_contact";
+            final String ITEM_AGE="Age";
+            final String ITEM_RENTER_NAME="Renter_name";
+            final String ITEM_RENTER_CONTACT="Renter_contact";
+            final String ITEM_OWNER_LASTNAME="Owner_LastName";
+            final String ITEM_RENTER_LASTNAME="Renter_LastName";
+            final String ITEM_OWNER_ADDRESS="Owner_Address";
+            final String ITEM_RENTER_ADDRESS="Renter_Address";
+            final String ITEM_RENTER_LOCATION="Renter_Location";
+            final String ITEM_OWNER_LOCATION="Owner_Location";
+            final String ITEM_RENTER_AGE="Renter_age";
+            final String ITEM_RENTER_EMAIL="Renter_email";
+            final String ITEM_OWNER_EMAIL="Owner_email";
+
+            try
+            {
+                //create a new child and add that to the group
+                final modelMember _modelMember = new modelMember();
+                PDLoadMember = new ProgressDialog(this);
+                PDLoadMember.setTitle("Updating your profile...");
+                PDLoadMember.setMessage("Please wait...");
+                PDLoadMember.setCancelable(false);
+
+                try {
+                    PDLoadMember.show();
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, Const.URL_WS_CRUD_LOGIN,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        // prepare the list of all records--------
+                                        model_Member  = new ArrayList<modelMember>();
+                                        //----------------------------------------
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        ArrayList<result_MemberJSON> resultjsonobj = new ArrayList<result_MemberJSON>();
+                                        resultjsonobj = parseJsonResult(jsonObject);
+                                        int success =resultjsonobj.get(0).getSuccess();
+                                        int retid;
+                                        if (success == 1) {
+                                            PDLoadMember.dismiss();
+                                            retid = Integer.parseInt(resultjsonobj.get(0).getOwner_id());
+                                            refreshmemberInfoToClient(resultjsonobj.get(0).getMemberList());
+                                        } // if ends
+                                    } catch (JSONException e) {
+                                        PDLoadMember.dismiss();
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            PDLoadMember.dismiss();
+                            Toast.makeText(mContext,
+                                    "failed to retrive infomations please check your network connection...", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put(ITEM_OWNER_ID,"37");
+                            params.put(ITEM_SUBMIT_TYPE,"ProfileUpdate");
+                            params.put(ITEM_USR,modelMember.getusr());
+                            params.put(ITEM_GCMREGID,modelMember.getgcmregid());
+                            params.put(ITEM_OWNER_NAME,modelMember.getOwner_name());
+                            params.put(ITEM_OWNER_CONTACT,modelMember.getOwner_contact());
+                            params.put(ITEM_AGE,modelMember.getAge());
+                            params.put(ITEM_RENTER_NAME,modelMember.getRenter_name());
+                            params.put(ITEM_RENTER_CONTACT,modelMember.getRenter_contact());
+                            params.put(ITEM_OWNER_LASTNAME,modelMember.getOwner_LastName());
+                            params.put(ITEM_RENTER_LASTNAME,modelMember.getRenter_LastName());
+                            params.put(ITEM_OWNER_ADDRESS,modelMember.getOwner_Address());
+                            params.put(ITEM_RENTER_ADDRESS,modelMember.getRenter_Address());
+                            params.put(ITEM_RENTER_LOCATION,modelMember.getRenter_Location());
+                            params.put(ITEM_OWNER_LOCATION,modelMember.getOwner_Location());
+                            params.put(ITEM_RENTER_AGE,modelMember.getRenter_age());
+                            params.put(ITEM_RENTER_EMAIL,modelMember.getRenter_email());
+                            params.put(ITEM_OWNER_EMAIL,modelMember.getOwner_email());
+
+                            return params;
+                        }
+                    };
+                    // Adding request to request queue
+                    GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+                }
+                catch (Exception Ex) {
+                    Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch(Exception Ex)
+            {
+                Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        catch(Exception Ex)
+        {
+            Snackbar.make(v, "Network error , check your network connection and try again!", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+
+    private modelMember getProfileData(View v)
+    {
+        modelMember _modelMember= new modelMember();
+        try
+        {
+//            Snackbar.make(v, mYregistrationId, Snackbar.LENGTH_LONG).show();
+
+            _modelMember.setOwner_id("37");
+            _modelMember.setusr(etOwnerUser.getText().toString());
+            _modelMember.setgcmregid(mYregistrationId); //Auto Generate field update later on
+            _modelMember.setOwner_name(etOwnerFirstname.getText().toString());
+            _modelMember.setOwner_contact(etOwnerPhoneno.getText().toString());
+            _modelMember.setAge(etOwnerAge.getText().toString());
+            _modelMember.setRenter_name(etRenterFirstname.getText().toString());
+            _modelMember.setRenter_contact(etRenterPhoneno.getText().toString());
+            _modelMember.setOwner_LastName(etOwnerLastname.getText().toString());
+            _modelMember.setRenter_LastName(etRenterLastname.getText().toString());
+            _modelMember.setOwner_Address(etOwnerAddress.getText().toString());
+            _modelMember.setRenter_Address(etRenterAddress.getText().toString());
+            _modelMember.setRenter_Location(atvRenter_places.getText().toString());
+            _modelMember.setOwner_Location(atvOwner_places.getText().toString());
+            _modelMember.setRenter_age(etRenterAge.getText().toString());
+            _modelMember.setRenter_email(etRenterEmail.getText().toString());
+            _modelMember.setOwner_email(etOwnerEmail.getText().toString());
+        }
+        catch(Exception Ex)
+        {
+            Snackbar.make(v, "Error while retriving data from client machine!", Snackbar.LENGTH_LONG).show();
+        }
+        return _modelMember;
     }
 
     private boolean checkValidation() {

@@ -18,8 +18,10 @@
 
         <attr name="registerTitle" format="string" />
         <attr name="registerHint" format="string" />
-        <attr name="registerPasswordHint" format="string" />
-        <attr name="registerRepeatPasswordHint" format="string" />
+
+        <!--<attr name="registerPasswordHint" format="string" />-->
+        <!--<attr name="registerRepeatPasswordHint" format="string" />-->
+        <!-- -->
         <attr name="registerActionText" format="string" />
         <attr name="registerSelectFlatTextColor" format="reference" />
         <attr name="registerTextColor" format="reference" />
