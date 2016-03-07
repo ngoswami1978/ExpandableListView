@@ -35,7 +35,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.neerajweb.expandablelistviewtest.Adapter.adapter_Expandable_Post_Comment;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.resultJSON;
-import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
+import com.neerajweb.expandablelistviewtest.Maintainance.ApartmentApplicationController;
 import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
 import com.neerajweb.expandablelistviewtest.Model.modelPostCommentHeader;
 import com.neerajweb.expandablelistviewtest.utils.Const;
@@ -194,7 +194,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             };
 
             // Adding request to request queue
-            GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+            ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
         }
         catch (Exception Ex) {
             Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -264,7 +264,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
             };
 
             // Adding request to request queue
-            GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+            ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
         }
         catch (Exception Ex) {
             Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -625,7 +625,7 @@ public class Expandable_Post_Comment_MainActivity extends Activity implements On
                                 }
                             };
                 // Adding request to request queue
-                GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+                ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
             }
             catch (Exception Ex) {
                 Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();

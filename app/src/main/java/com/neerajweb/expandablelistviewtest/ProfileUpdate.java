@@ -5,13 +5,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import java.io.BufferedReader;
@@ -28,21 +34,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.AutoCompleteTextView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,18 +59,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.PlaceJSONParser;
-import com.neerajweb.expandablelistviewtest.JSONfunctions.resultJSON;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.result_MemberJSON;
-import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
+import com.neerajweb.expandablelistviewtest.Maintainance.ApartmentApplicationController;
 import com.neerajweb.expandablelistviewtest.Model.modelMember;
-import com.neerajweb.expandablelistviewtest.Model.modelPostComment;
 import com.neerajweb.expandablelistviewtest.utils.Const;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.neerajweb.expandablelistviewtest.utils.ImageLoadTask;
+import com.neerajweb.expandablelistviewtest.utils.PictureUtils;
+
+import io.codetail.widget.RevealFrameLayout;
 
 
 /**
@@ -76,15 +79,21 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class ProfileUpdate extends Activity implements View.OnClickListener {
 
+    // LogCat tag
+    private static final String TAG = ProfileUpdate.class.getSimpleName();
+
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     GoogleCloudMessaging gcmObj;
+
+    CardView myCardView;
+    RevealFrameLayout myprofile_cardParent;
 
     public static final String REG_ID = "regId";
     public static final String EMAIL_ID = "eMailId";
     public String mYregistrationId;
 
     ToggleButton tButton;
-    TextView tvStateofToggleButton;
+    TextView tvStateofToggleButton,tvFlat;
     private Button btnUpdate;
     private EditText etOwnerPhoneno,etRenterPhoneno;
     private EditText etOwnerFirstname,etOwnerLastname,etOwnerAge,etOwnerAddress,etOwnerEmail,etOwnerUser;
@@ -101,6 +110,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
 
     PlacesTask placesTask;
     ParserTask parserTask;
+    ImageView profilePicImageView;
 
     PlacesTaskRenter placesTaskRenter;
     ParserTaskRenter parserTaskRenter;
@@ -108,8 +118,6 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
     ProgressBar prBarRenterLocation;
 
     ProgressBar prBarGCMid;
-
-
 
     private int keyDel;
 
@@ -120,6 +128,9 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         mContext = this;
         applicationContext = getApplicationContext();
 
+        setScreenAutoCenter();
+
+        profilePicImageView=(ImageView) findViewById(R.id.profilePicImageView);
         prBarOwnerLocation=(ProgressBar) findViewById(R.id.prBarOwnerLocation);
         prBarRenterLocation=(ProgressBar) findViewById(R.id.prBarRenterLocation);
         prBarGCMid=(ProgressBar) findViewById(R.id.prBarGCMid);
@@ -138,24 +149,32 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         etRenterAddress=(EditText) findViewById(R.id.etRenterAddress);
         etRenterEmail=(EditText) findViewById(R.id.etRenterEmail);
 
+        tvFlat=(TextView)findViewById(R.id.tvFlat);
 
         tButton = (ToggleButton) findViewById(R.id.toggleButton1);
         tvStateofToggleButton=(TextView)findViewById(R.id.tvstate);
         tvStateofToggleButton.setText("OFF");
+
         tButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
 //                    tvStateofToggleButton.setText("ON");
                     if (checkPlayServices()) {
                         // Register Device in GCM Server
                         registerInBackground(etOwnerUser.getText().toString());
                     }
-                }else{
+                } else {
                     tvStateofToggleButton.setText("OFF");
-                    mYregistrationId="";
+                    mYregistrationId = "";
                 }
+            }
+        });
+
+        profilePicImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CalltoImageCaptureLauncher();
             }
         });
 
@@ -367,10 +386,60 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                 Context.MODE_PRIVATE);
         String registrationId = prefs.getString(REG_ID, "");
 
+        /*Camera and video code*/
         if (!TextUtils.isEmpty(registrationId)) {
             mYregistrationId=registrationId;
         }
+
         Loaddata();
+    }
+
+    private void setScreenAutoCenter()
+    {
+        try {
+            Display display = getWindowManager().getDefaultDisplay();
+            int width = (display.getWidth() );
+            int height = (display.getHeight() );
+
+//            Toast.makeText(
+//                    applicationContext,
+//                    "Width of my Mobile is .\n\n"
+//                            + String.valueOf(width), Toast.LENGTH_SHORT).show();
+
+            // set Screen auto center in any device
+            myprofile_cardParent =(RevealFrameLayout) findViewById(R.id.profile_cardParent);
+            RevealFrameLayout.LayoutParams lp = new RevealFrameLayout.LayoutParams(width, height);
+            lp.gravity = Gravity.CENTER;
+            myprofile_cardParent.setLayoutParams(lp);
+            myprofile_cardParent.setForegroundGravity(Gravity.CENTER);
+
+
+            myCardView =(CardView) findViewById(R.id.profile_card);
+            CardView.LayoutParams lp1 = new CardView.LayoutParams(width-100, height-50);
+            lp1.gravity = Gravity.CENTER;
+            myCardView.setLayoutParams(lp1);
+            myCardView.setRadius(10);
+
+//        // Set cardView content padding
+//        myCardView.setContentPadding(15, 15, 15, 15);
+//
+//        // Set the CardView maximum elevation
+//        myCardView.setMaxCardElevation(15);
+//
+//        // Set CardView elevation
+//        myCardView.setCardElevation(9);
+
+            //end set Screen auto center in any device
+
+
+        }
+        catch(Exception Ex){}
+    }
+
+    private void CalltoImageCaptureLauncher()
+    {
+        Intent mainIntent = new Intent(ProfileUpdate.this, ProfileImageSelect.class);
+        startActivity(mainIntent);
     }
 
     // AsyncTask to register Device in GCM Server
@@ -406,10 +475,10 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                 prBarGCMid.setVisibility(View.INVISIBLE);
                 if (!TextUtils.isEmpty(mYregistrationId)) {
                     storeRegIdinSharedPref(applicationContext, mYregistrationId, emailID);
-                    Toast.makeText(
-                            applicationContext,
-                            "Registered with GCM Server successfully.\n\n"
-                                    + msg, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(
+//                            applicationContext,
+//                            "Registered with GCM Server successfully.\n\n"
+//                                    + msg, Toast.LENGTH_SHORT).show();
                 } else {
                     tButton.setChecked(false);
                     tvStateofToggleButton.setText("OFF");
@@ -463,6 +532,10 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         final String ITEM_RENTER_AGE="Renter_age";
         final String ITEM_RENTER_EMAIL="Renter_email";
         final String ITEM_OWNER_EMAIL="Owner_email";
+        final String ITEM_PHOTONAME="photoname";
+        final String ITEM_PHOTOPATH="photopath";
+
+        String tag_string_req = "LoadProfile";
 
         try
         {
@@ -492,6 +565,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                                         PDLoadMember.dismiss();
                                         retid = Integer.parseInt(resultjsonobj.get(0).getOwner_id());
                                         refreshmemberInfoToClient(resultjsonobj.get(0).getMemberList());
+                                        ApartmentApplicationController.getInstance().getRequestQueue().getCache().clear();
                                     } // if ends
                                 } catch (JSONException e) {
                                     PDLoadMember.dismiss();
@@ -517,7 +591,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                     }
                 };
                 // Adding request to request queue
-                GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+                ApartmentApplicationController.getInstance().addToReqQueue(postRequest,tag_string_req);
             }
             catch (Exception Ex) {
                 Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -541,7 +615,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                 tButton.setChecked(false);
                 tvStateofToggleButton.setText("OFF");
             }
-
+            tvFlat.setText(memberList.get(0).getflt_no() + " " + memberList.get(0).getflt_type());
             etOwnerPhoneno.setText(memberList.get(0).getOwner_contact());
             etRenterPhoneno.setText(memberList.get(0).getRenter_contact());
             etOwnerFirstname.setText(memberList.get(0).getOwner_name());
@@ -557,6 +631,12 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
             etRenterEmail.setText(memberList.get(0).getRenter_email());
             atvOwner_places.setText(memberList.get(0).getOwner_Location());
             atvRenter_places.setText(memberList.get(0).getRenter_Location());
+
+            //profilePicImageView.setImageURI(String.valueOf(memberList.get(0).getphotopath()+"/"+memberList.get(0).getphotoname()) );
+
+            new ImageLoadTask(memberList.get(0).getphotopath()+"/"+memberList.get(0).getphotoname(), profilePicImageView).execute();
+
+
         }
         catch(Exception Ex)
         {
@@ -597,6 +677,8 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
         String ITEM_OWNER_EMAIL="Owner_email";
         String ITEM_SUCCESS="success";
         String ITEM_MESSAGE="message";
+        String ITEM_PHOTONAME="photoname";
+        String ITEM_PHOTOPATH="photopath";
 
         //response.getJSONObject("result").get("flt_id")
             modelMember itemrpop = new modelMember();
@@ -635,6 +717,9 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                     itemrpop.setRenter_age(jobj.isNull(ITEM_RENTER_AGE) ? "" : jobj.getString(ITEM_RENTER_AGE));
                     itemrpop.setRenter_email(jobj.isNull(ITEM_RENTER_EMAIL) ? "" : jobj.getString(ITEM_RENTER_EMAIL));
                     itemrpop.setOwner_email(jobj.isNull(ITEM_OWNER_EMAIL) ? "" : jobj.getString(ITEM_OWNER_EMAIL));
+
+                    itemrpop.setphotoname(jobj.isNull(ITEM_PHOTONAME) ? "" : jobj.getString(ITEM_PHOTONAME));
+                    itemrpop.setphotopath(jobj.isNull(ITEM_PHOTOPATH) ? "" : jobj.getString(ITEM_PHOTOPATH));
 
                     memberList.add(0, itemrpop);
                     item.setMemberList(memberList);
@@ -955,7 +1040,24 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         checkPlayServices();
+        setProfileImage();
     }
+
+    private void setProfileImage()
+    {
+        final Bitmap bitmap;
+        try
+        {
+            String ImagePath = ApartmentApplicationController.getprofileImagePath();
+            if (!TextUtils.isEmpty(ImagePath)) {
+                bitmap = PictureUtils.compressImage(ImagePath);
+                profilePicImageView.setImageBitmap(bitmap);
+            }
+        }
+        catch(Exception Ex)
+        {   }
+    }
+
     // Check if Google Playservices is installed in Device or not
     private boolean checkPlayServices() {
         int resultCode = GooglePlayServicesUtil
@@ -974,11 +1076,11 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                 finish();
             }
             return false;
-        } else {
-            Toast.makeText(
-                    applicationContext,
-                    "This device supports Play services, App will work normally",
-                    Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Log.d(TAG, "This device supports Play services, App will work normally");
+//            Toast.makeText(applicationContext,"This device supports Play services, App will work normally",Toast.LENGTH_LONG).show();
         }
         return true;
     }
@@ -1005,6 +1107,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
             final String ITEM_RENTER_AGE="Renter_age";
             final String ITEM_RENTER_EMAIL="Renter_email";
             final String ITEM_OWNER_EMAIL="Owner_email";
+            String tag_string_req = "UpdateProfile";
 
             try
             {
@@ -1034,6 +1137,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                                             PDLoadMember.dismiss();
                                             retid = Integer.parseInt(resultjsonobj.get(0).getOwner_id());
                                             refreshmemberInfoToClient(resultjsonobj.get(0).getMemberList());
+                                            ApartmentApplicationController.getInstance().getRequestQueue().getCache().clear();
                                         } // if ends
                                     } catch (JSONException e) {
                                         PDLoadMember.dismiss();
@@ -1076,7 +1180,7 @@ public class ProfileUpdate extends Activity implements View.OnClickListener {
                         }
                     };
                     // Adding request to request queue
-                    GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+                    ApartmentApplicationController.getInstance().addToReqQueue(postRequest,tag_string_req);
                 }
                 catch (Exception Ex) {
                     Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();

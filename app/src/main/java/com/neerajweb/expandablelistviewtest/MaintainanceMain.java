@@ -53,7 +53,7 @@ import com.neerajweb.expandablelistviewtest.DateTimePicker.DateTime;
 import com.neerajweb.expandablelistviewtest.DateTimePicker.DateTimePicker;
 import com.neerajweb.expandablelistviewtest.DateTimePicker.SimpleDateTimePicker;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.memberJSON;
-import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
+import com.neerajweb.expandablelistviewtest.Maintainance.ApartmentApplicationController;
 import com.neerajweb.expandablelistviewtest.Model.modelMaintainanceLoadReportPeriods;
 import com.neerajweb.expandablelistviewtest.QuickActionDialogFragment.AlignmentFlag;
 import com.neerajweb.expandablelistviewtest.QuickActionDialogFragment.QuickActionDialogFragment;
@@ -1128,7 +1128,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
             };
 
             // Adding request to request queue
-            GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+            ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
         }
         catch (Exception Ex) {
             Toast.makeText(this, Ex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1987,7 +1987,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
     // Download JSON data AsyncTask
     private class DownloadMemberDetailwithLastPaymentRecordJSON extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
-        final GlobalClassMyApplicationAppController globalVariable = (GlobalClassMyApplicationAppController) getApplicationContext();
+        final ApartmentApplicationController globalVariable = (ApartmentApplicationController) getApplicationContext();
 
         @Override
         protected void onPreExecute() {
@@ -2189,7 +2189,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
     }
 
     public void insertMaintainanceDetailTOServer(final View v, final Dialog PAYDIALOG) {
-//        final GlobalClassMyApplicationAppController globalVariable = (GlobalClassMyApplicationAppController) getApplicationContext();
+//        final ApartmentApplicationController globalVariable = (ApartmentApplicationController) getApplicationContext();
         IsSaveMaintainance=false;
         MPD.show();
         final String flat_type = mySpinner.getSelectedItem().toString();
@@ -2254,7 +2254,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
         };
 
         // Adding request to request queue
-        GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+        ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
     }
 
     private String getMonthCode(String month) {

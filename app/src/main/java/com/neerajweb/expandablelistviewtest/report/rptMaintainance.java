@@ -29,7 +29,7 @@ import com.neerajweb.expandablelistviewtest.app.AppController;
 
 public class rptMaintainance extends ListActivity {
 
-        String url = "http://www.myandroidng.com/Apartment/WS/ws_search_maintainancedetail.php";
+        String url = "http://www.myandroidng.com/welcomeapartment/WS/ws_search_maintainancedetail.php";
         ArrayList<HashMap<String, String>> Item_List;
         ArrayList<modelMaintainancedetail> objModelMaintainancedetail;
 

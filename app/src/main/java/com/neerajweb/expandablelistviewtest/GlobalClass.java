@@ -12,7 +12,7 @@ public class GlobalClass extends Application {
     private String name;
     private String email;
     public final String URL_MEMBERDETAIL="http://myandroidng.com/member_detail.php";
-    public final String URL_UPDATEMAINTAINANCE="http://myandroidng.com/Apartment/WS/ws_crud_maintainance.php";
+    public final String URL_UPDATEMAINTAINANCE="http://myandroidng.com/welcomeapartment/WS/ws_crud_maintainance.php";
 
 
     public String getName() {        return name;    }

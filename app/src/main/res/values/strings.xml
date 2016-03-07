@@ -27,6 +27,7 @@
     <string name="password">Password</string>
     <string name="go">GO</string>
     <string name="register">REGISTER</string>
+    <string name="welcome">Welcome to Lakshaya</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="next">NEXT</string>
     <string name="footer_text">Copyright © 2015 Neeraj Apps Inc.</string>
@@ -50,4 +51,12 @@
     </string-array>
     <color name="snow">#eee9e9</color>
     <string name="Flat_prompt">Choose a Flat</string>
+
+    <string name="app_name">Camera File Upload</string>
+    <string name="btnTakePicture">Capture Image</string>
+    <string name="btnRecordVideo">Record Video</string>
+    <string name="btnTakePictureGallery">Take Picture from gallery</string>
+    <string name="btnCancel">cancel</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Set profile Picture</string>
 </resources>

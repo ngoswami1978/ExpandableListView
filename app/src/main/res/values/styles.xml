@@ -78,4 +78,13 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+
+    <!-- Base application theme. -->
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="android:background">#ffdddddd</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

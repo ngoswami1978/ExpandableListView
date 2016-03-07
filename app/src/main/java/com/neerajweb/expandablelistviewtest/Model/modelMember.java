@@ -31,14 +31,15 @@ public class modelMember {
     private String Renter_age = "";
     private String Renter_email = "";
     private String Owner_email = "";
-
+    private String photoname= "";
+    private String photopath= "";
 
     public modelMember() {
     }
 
     public modelMember(String mOwner_id, String musr, String memail, String mregIP, String mdt, String mgcmregid, String mapprove_status, String mflt_id, String mflt_type, String mflt_no, String mOwner_name, String mOwner_contact, String mAge, String mRenter_name,
                        String mRenter_contact, String mcustomFont, String mOwner_LastName, String mRenter_LastName, String mOwner_Address, String mRenter_Address,
-                       String mRenter_Location, String mOwner_Location, String mRenter_age, String mRenter_email, String mOwner_email) {
+                       String mRenter_Location, String mOwner_Location, String mRenter_age, String mRenter_email, String mOwner_email,String mphotoname , String mphotopath) {
         this.Owner_id = mOwner_id;
         this.usr = musr;
         this.email = memail;
@@ -64,6 +65,8 @@ public class modelMember {
         this.Renter_age = mRenter_age;
         this.Renter_email = mRenter_email;
         this.Owner_email = mOwner_email;
+        this.photoname=mphotoname;
+        this.photopath=mphotopath;
     }
 
     public void setOwner_id(String _Owner_id) {
@@ -265,4 +268,26 @@ public class modelMember {
     public String getOwner_email() {
         return this.Owner_email;
     }
+
+
+    public void setphotoname(String _photoname) {
+        this.photoname= _photoname;
+    }
+
+    public String getphotoname() {
+        return this.photoname;
+    }
+
+    public void setphotopath(String _photopath) {
+        this.photopath = _photopath;
+    }
+
+    public String getphotopath() {
+        return this.photopath;
+    }
+
+
+
+
+
 }

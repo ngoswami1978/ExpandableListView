@@ -3,7 +3,6 @@ package com.neerajweb.expandablelistviewtest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -35,17 +34,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.memberJSON;
 import com.neerajweb.expandablelistviewtest.JSONfunctions.result_MemberJSON;
-import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
 import com.neerajweb.expandablelistviewtest.Model.modelMember;
 import com.neerajweb.expandablelistviewtest.utils.Const;
 import io.codetail.animation.SupportAnimator;
@@ -260,7 +252,7 @@ public class MaterialLoginView extends FrameLayout {
             try
             {
                 progressDialog = new ProgressDialog(getContext());
-                progressDialog.setTitle("Processing...");
+                progressDialog.setTitle("Getting information");
                 progressDialog.setMessage("Please wait...");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
@@ -298,7 +290,7 @@ public class MaterialLoginView extends FrameLayout {
                 Initialmemberpop.setlastPaidby("");
 
                 member.add(Initialmemberpop);
-                Arraylst_Spinner_Member.add("Choose Flat....");
+                Arraylst_Spinner_Member.add("Choose Flat");
 
                 for (int i = 0; i < jsonarray.length(); i++) {
                     jsonobject = jsonarray.getJSONObject(i);

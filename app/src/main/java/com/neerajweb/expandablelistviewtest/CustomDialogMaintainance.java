@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.neerajweb.expandablelistviewtest.Adapter.adapter_Maintainancedetail;
+import com.neerajweb.expandablelistviewtest.Maintainance.ApartmentApplicationController;
 import com.neerajweb.expandablelistviewtest.Model.modelMaintainancedetail;
-import com.neerajweb.expandablelistviewtest.Maintainance.GlobalClassMyApplicationAppController;
 import com.neerajweb.expandablelistviewtest.utils.Const;
 
 /**
@@ -327,7 +327,7 @@ public class CustomDialogMaintainance extends Dialog{
                     }
                 };
                 // Adding request to request queue
-                GlobalClassMyApplicationAppController.getInstance().addToReqQueue(postRequest);
+                ApartmentApplicationController.getInstance().addToReqQueue(postRequest);
             }
             catch (Exception Ex) {
                 Toast.makeText(getContext(), Ex.getMessage(), Toast.LENGTH_SHORT).show();

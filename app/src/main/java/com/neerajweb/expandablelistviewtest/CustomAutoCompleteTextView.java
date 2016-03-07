@@ -2,7 +2,8 @@ package com.neerajweb.expandablelistviewtest;
 
 /**
  * Created by Admin on 23/02/2016.
- */
+*/
+
 import java.util.HashMap;
 
 import android.content.Context;
@@ -22,5 +23,4 @@ public class CustomAutoCompleteTextView extends AutoCompleteTextView {
         HashMap<String, String> hm = (HashMap<String, String>) selectedItem;
         return hm.get("description");
     }
-
 }
