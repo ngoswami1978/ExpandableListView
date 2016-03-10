@@ -19,10 +19,20 @@
 
     <dimen name="five_dp">5dp</dimen>
     <dimen name="ten_dp">10dp</dimen>
+    <dimen name="fifteen_dp">15dp</dimen>
+
     <dimen name="twenty_dp">20dp</dimen>
     <dimen name="normal_font_size">7dp</dimen>
+    <dimen name="fifty_dp">50dp</dimen>
     <dimen name="ninety_dp">90dp</dimen>
     <dimen name="twohundred">200dp</dimen>
     <dimen name="one_dp">1dp</dimen>
+
+
+    <dimen name="title">17dp</dimen>
+    <dimen name="rating">15dip</dimen>
+    <dimen name="genre">13dip</dimen>
+    <dimen name="year">12dip</dimen>
+
 
 </resources>

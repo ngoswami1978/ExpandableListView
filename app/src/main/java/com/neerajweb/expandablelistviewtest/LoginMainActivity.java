@@ -45,7 +45,7 @@ public class LoginMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginactivity_main);
+        setContentView(R.layout.login_activity_main);
         mContext = this;
         // SQLite database handler
         db = new SQLiteHandler(getApplicationContext());

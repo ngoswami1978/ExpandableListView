@@ -22,7 +22,7 @@
     <color name="list_row_end_color">#ffffff</color>
     <color name="list_row_hover_start_color">#FF1493</color>
     <color name="list_row_hover_end_color">#b30000</color>
-
+    <color name="list_row_notapprovedcolor">#b30000</color>
 
     <color name="colorAccent">#FFFFFF</color>
     <color name="material_login_login_color">#FFFFFF</color>
@@ -37,6 +37,5 @@
     <color name="btn_bg">#277bec</color>
     <color name="txt_font">#4e5572</color>
     <color name="action_bar">#1f2649</color>
-
 
 </resources>

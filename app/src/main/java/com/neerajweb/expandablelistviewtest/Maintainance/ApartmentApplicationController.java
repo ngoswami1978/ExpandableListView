@@ -3,6 +3,7 @@ package com.neerajweb.expandablelistviewtest.Maintainance;
 /**
  * Created by Admin on 02/01/2016.
  */
+
 import android.app.Application;
 import android.text.TextUtils;
 
@@ -28,39 +29,60 @@ public class ApartmentApplicationController extends Application {
     private String Owner_id;
     private String usr;
     private String regIP;
-    private String dt ;
-    private String gcmregid ;
-    private String approve_status ;
-    private String flt_id ;
-    private String flt_type ;
-    private String flt_no ;
-    private String Owner_name ;
-    private String Owner_contact ;
-    private String Age ;
-    private String Renter_name ;
-    private String Renter_contact ;
-    private String customFont ;
-    private String Owner_LastName ;
-    private String Renter_LastName ;
-    private String Owner_Address ;
-    private String Renter_Address ;
-    private String Renter_Location ;
-    private String Owner_Location ;
-    private String Renter_age ;
-    private String Renter_email ;
-    private String Owner_email ;
+    private String dt;
+    private String gcmregid;
+    private String approve_status;
+    private String flt_id;
+    private String flt_type;
+    private String flt_no;
+    private String Owner_name;
+    private String Owner_contact;
+    private String Age;
+    private String Renter_name;
+    private String Renter_contact;
+    private String customFont;
+    private String Owner_LastName;
+    private String Renter_LastName;
+    private String Owner_Address;
+    private String Renter_Address;
+    private String Renter_Location;
+    private String Owner_Location;
+    private String Renter_age;
+    private String Renter_email;
+    private String Owner_email;
 
-    public static String getprofileImagePath() {        return profileImagePath;    }
-    public static void setprofileImagePath(String a_profileImagePath) {        profileImagePath = a_profileImagePath;    }
+    public static String getprofileImagePath() {
+        return profileImagePath;
+    }
 
-    public String getName() {        return name;    }
-    public void setName(String aName) {        name = aName;    }
+    public static void setprofileImagePath(String a_profileImagePath) {
+        profileImagePath = a_profileImagePath;
+    }
 
-    public String getEmail() {        return email;    }
-    public void setEmail(String aEmail) {        email = aEmail;    }
+    public String getName() {
+        return name;
+    }
 
-    public void setOwner_id(String _Owner_id) {        this.Owner_id = _Owner_id;    }
-    public String getOwner_id() {        return this.Owner_id;    }
+    public void setName(String aName) {
+        name = aName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String aEmail) {
+        email = aEmail;
+    }
+
+    public void setOwner_id(String _Owner_id) {
+        this.Owner_id = _Owner_id;
+    }
+
+    public String getOwner_id() {
+        return this.Owner_id;
+    }
+
     public void setusr(String _usr) {
         this.usr = _usr;
     }
@@ -189,7 +211,9 @@ public class ApartmentApplicationController extends Application {
         return this.Owner_LastName;
     }
 
-    public void setRenter_LastName(String _Renter_LastName) {     this.Renter_LastName = _Renter_LastName;    }
+    public void setRenter_LastName(String _Renter_LastName) {
+        this.Renter_LastName = _Renter_LastName;
+    }
 
     public String getRenter_LastName() {
         return this.Renter_LastName;
@@ -211,7 +235,9 @@ public class ApartmentApplicationController extends Application {
         return this.Renter_Address;
     }
 
-    public void setRenter_Location(String _Renter_Location) {        this.Renter_Location = _Renter_Location;    }
+    public void setRenter_Location(String _Renter_Location) {
+        this.Renter_Location = _Renter_Location;
+    }
 
     public String getRenter_Location() {
         return this.Renter_Location;
@@ -288,6 +314,7 @@ public class ApartmentApplicationController extends Application {
     public static synchronized ApartmentApplicationController getInstance() {
         return mInstance;
     }
+
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -295,6 +322,7 @@ public class ApartmentApplicationController extends Application {
 
         return mRequestQueue;
     }
+
     public RequestQueue getReqQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -302,6 +330,7 @@ public class ApartmentApplicationController extends Application {
 
         return mRequestQueue;
     }
+
     public ImageLoader getImageLoader() {
         getRequestQueue();
         if (mImageLoader == null) {

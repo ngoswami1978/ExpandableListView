@@ -1,5 +1,7 @@
 package com.neerajweb.expandablelistviewtest.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -24,5 +26,18 @@ public class Utility {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public static  String convertDate(String date) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy hh:mm:ss");
+            Date d = format.parse(date);
+
+            SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            return serverFormat.format(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

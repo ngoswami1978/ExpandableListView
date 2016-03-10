@@ -58,7 +58,9 @@ public class TouchImageView extends ImageView {
 
     private static enum State {
         NONE, DRAG, ZOOM, FLING, ANIMATE_ZOOM
-    };
+    }
+
+    ;
 
     private State state;
 
@@ -316,8 +318,7 @@ public class TouchImageView extends ImageView {
     /**
      * Set the max zoom multiplier. Default value: 3.
      *
-     * @param max
-     *            max zoom multiplier.
+     * @param max max zoom multiplier.
      */
     public void setMaxZoom(float max) {
         maxScale = max;
@@ -346,8 +347,7 @@ public class TouchImageView extends ImageView {
     /**
      * Set the min zoom multiplier. Default value: 1.
      *
-     * @param min
-     *            min zoom multiplier.
+     * @param min min zoom multiplier.
      */
     public void setMinZoom(float min) {
         minScale = min;
@@ -732,20 +732,13 @@ public class TouchImageView extends ImageView {
      * the area of image which was previously centered and adjusts translations
      * so that is again the center, post-rotation.
      *
-     * @param axis
-     *            Matrix.MTRANS_X or Matrix.MTRANS_Y
-     * @param trans
-     *            the value of trans in that axis before the rotation
-     * @param prevImageSize
-     *            the width/height of the image before the rotation
-     * @param imageSize
-     *            width/height of the image after rotation
-     * @param prevViewSize
-     *            width/height of view before rotation
-     * @param viewSize
-     *            width/height of view after rotation
-     * @param drawableSize
-     *            width/height of drawable
+     * @param axis          Matrix.MTRANS_X or Matrix.MTRANS_Y
+     * @param trans         the value of trans in that axis before the rotation
+     * @param prevImageSize the width/height of the image before the rotation
+     * @param imageSize     width/height of the image after rotation
+     * @param prevViewSize  width/height of view before rotation
+     * @param viewSize      width/height of view after rotation
+     * @param drawableSize  width/height of drawable
      */
     private void translateMatrixAfterRotate(int axis, float trans,
                                             float prevImageSize, float imageSize, int prevViewSize,
@@ -810,7 +803,6 @@ public class TouchImageView extends ImageView {
      * to the view's listener.
      *
      * @author Ortiz
-     *
      */
     private class GestureListener extends
             GestureDetector.SimpleOnGestureListener {
@@ -883,7 +875,6 @@ public class TouchImageView extends ImageView {
      * also sends touch events to Scale Detector and Gesture Detector.
      *
      * @author Ortiz
-     *
      */
     private class PrivateOnTouchListener implements OnTouchListener {
 
@@ -965,7 +956,6 @@ public class TouchImageView extends ImageView {
      * ScaleListener detects profileuser two finger scaling and scales image.
      *
      * @author Ortiz
-     *
      */
     private class ScaleListener extends
             ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -1048,7 +1038,6 @@ public class TouchImageView extends ImageView {
      * in/out graphic to the image.
      *
      * @author Ortiz
-     *
      */
     private class DoubleTapZoom implements Runnable {
 
@@ -1157,15 +1146,12 @@ public class TouchImageView extends ImageView {
      * This function will transform the coordinates in the touch event to the
      * coordinate system of the drawable that the imageview contain
      *
-     * @param x
-     *            x-coordinate of touch event
-     * @param y
-     *            y-coordinate of touch event
-     * @param clipToBitmap
-     *            Touch event may occur within view, but outside image content.
-     *            True, to clip return value to the bounds of the bitmap size.
+     * @param x            x-coordinate of touch event
+     * @param y            y-coordinate of touch event
+     * @param clipToBitmap Touch event may occur within view, but outside image content.
+     *                     True, to clip return value to the bounds of the bitmap size.
      * @return Coordinates of the point touched, in the coordinate system of the
-     *         original drawable.
+     * original drawable.
      */
     private PointF transformCoordTouchToBitmap(float x, float y,
                                                boolean clipToBitmap) {
@@ -1190,10 +1176,8 @@ public class TouchImageView extends ImageView {
      * coordinates in the drawable's coordinate system to the view's coordinate
      * system.
      *
-     * @param bx
-     *            x-coordinate in original bitmap coordinate system
-     * @param by
-     *            y-coordinate in original bitmap coordinate system
+     * @param bx x-coordinate in original bitmap coordinate system
+     * @param by y-coordinate in original bitmap coordinate system
      * @return Coordinates of the point in the view's coordinate system.
      */
     private PointF transformCoordBitmapToTouch(float bx, float by) {
@@ -1212,7 +1196,6 @@ public class TouchImageView extends ImageView {
      * image. The values for the translation are interpolated by the Scroller.
      *
      * @author Ortiz
-     *
      */
     private class Fling implements Runnable {
 
