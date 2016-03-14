@@ -22,6 +22,9 @@
     <dimen name="fifteen_dp">15dp</dimen>
 
     <dimen name="twenty_dp">20dp</dimen>
+    <dimen name="twentyfive_dp">35dp</dimen>
+    <dimen name="thirtyfive_dp">35dp</dimen>
+
     <dimen name="normal_font_size">7dp</dimen>
     <dimen name="fifty_dp">50dp</dimen>
     <dimen name="ninety_dp">90dp</dimen>
@@ -33,6 +36,10 @@
     <dimen name="rating">15dip</dimen>
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
+
+    <dimen name="LoadingDots_dots_size_default">12dp</dimen>
+    <dimen name="LoadingDots_dots_space_default">2dp</dimen>
+    <dimen name="LoadingDots_jump_height_default">12dp</dimen>
 
 
 </resources>

@@ -34,15 +34,27 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="8dp" />
 
-                <!-- Owner Name -->
+                <!-- Owner Name Confirmed-->
                 <TextView
-                    android:id="@+id/OwnerName"
+                    android:id="@+id/OwnerNameConfirmed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/thumbnail"
                     android:layout_toRightOf="@+id/thumbnail"
                     android:text="Neeraj Goswami"
                     android:drawableLeft="@drawable/tickmarkgreen"
+                    android:drawablePadding="@dimen/five_dp"
+                    android:textSize="@dimen/title"
+                    android:textStyle="bold" />
+                <!-- Owner Name Confirmed-->
+                <TextView
+                    android:id="@+id/OwnerNameUnConfirmed"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_alignTop="@+id/thumbnail"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:text="Neeraj Goswami"
+                    android:drawableLeft="@drawable/untickmarkred"
                     android:drawablePadding="@dimen/five_dp"
                     android:textSize="@dimen/title"
                     android:textStyle="bold" />

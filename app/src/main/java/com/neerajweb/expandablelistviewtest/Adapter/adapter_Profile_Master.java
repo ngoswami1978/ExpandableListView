@@ -37,7 +37,6 @@ public class adapter_Profile_Master extends BaseAdapter {
     private List<modelMemberProfile> profileItems;
     ImageLoader imageLoader = ApartmentApplicationController.getInstance().getImageLoader();
     Context myContext;
-    Drawable[] myTextViewCompoundDrawables;
 
     NetworkImageView thumbNail;
 
@@ -84,7 +83,9 @@ public class adapter_Profile_Master extends BaseAdapter {
 
         thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
 
-        TextView ownername=(TextView) convertView.findViewById(R.id.OwnerName);
+        TextView OwnerNameConfirmed=(TextView) convertView.findViewById(R.id.OwnerNameConfirmed);
+        TextView OwnerNameUnConfirmed=(TextView) convertView.findViewById(R.id.OwnerNameUnConfirmed);
+
         TextView ownerflatno=(TextView) convertView.findViewById(R.id.OwnerFlatNo);
         TextView owneraddress=(TextView) convertView.findViewById(R.id.OwnerAddress);
         TextView ownerlocation=(TextView) convertView.findViewById(R.id.OwnerLocation);
@@ -119,17 +120,27 @@ public class adapter_Profile_Master extends BaseAdapter {
             thumbNail.setImageUrl(Const.URL_WS_EMPTYUSERPROFILE, imageLoader);
         }
 
-        // Owner Name
-        ownername.setText(m.getOwner_name());
-        setCustomFontface(m.getCustomFontName(), ownername);
 
-        //remove drawable image from Owner Name TextView i.e greentick mark//
-        myTextViewCompoundDrawables = ownername.getCompoundDrawables();
+        OwnerNameConfirmed.setVisibility(convertView.GONE);
+        OwnerNameUnConfirmed.setVisibility(convertView.GONE);
 
-        if(m.getapprove_status().equals("0"))
+        if(m.getapprove_status().equals("0")) // Unconfirmed Owner
         {
-            // code later on
-            convertView.setBackgroundColor(myContext.getResources().getColor(R.color.list_row_notapprovedcolor));
+            OwnerNameConfirmed.setVisibility(convertView.GONE);
+            OwnerNameUnConfirmed.setVisibility(convertView.VISIBLE);
+
+            // Owner Name
+            OwnerNameUnConfirmed.setText(m.getOwner_name());
+            setCustomFontface(m.getCustomFontName(), OwnerNameUnConfirmed);
+//            convertView.setBackgroundColor(myContext.getResources().getColor(R.color.list_row_notapprovedcolor));
+        }
+        else
+        {
+            OwnerNameUnConfirmed.setVisibility(convertView.GONE);
+            OwnerNameConfirmed.setVisibility(convertView.VISIBLE);
+            // Owner Name
+            OwnerNameConfirmed.setText(m.getOwner_name());
+            setCustomFontface(m.getCustomFontName(), OwnerNameConfirmed);
         }
 
         ownerflatno.setText(m.getflt_no() +"\n" +"[" + m.getflt_type() + "]");
@@ -191,7 +202,7 @@ public class adapter_Profile_Master extends BaseAdapter {
         if (m.getLastPaidAmount().equals(""))
             lastpaidamount.setText("");
         else
-            lastpaidamount.setText(myContext.getResources().getString(R.string.Rs) + "." + m.getLastPaidAmount());
+            lastpaidamount.setText(myContext.getResources().getString(R.string.Rs) + " " + m.getLastPaidAmount());
 
 
         setCustomFontface(m.getCustomFontName(), lastpaidamount);
@@ -200,7 +211,7 @@ public class adapter_Profile_Master extends BaseAdapter {
             lastpaidmonthyear.setText("");
         }
         else{
-            lastpaidmonthyear.setText(m.getLastPaidMonth()+","+m.getLastPaidYear());
+            lastpaidmonthyear.setText(m.getLastPaidMonth()+", "+m.getLastPaidYear());
             setCustomFontface(m.getCustomFontName(), lastpaidmonthyear);
         }
 

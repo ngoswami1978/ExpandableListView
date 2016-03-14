@@ -22,15 +22,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.mingle.widget.ShapeLoadingDialog;
 import com.neerajweb.expandablelistviewtest.Adapter.adapter_Profile_Master;
 import com.neerajweb.expandablelistviewtest.Maintainance.ApartmentApplicationController;
 import com.neerajweb.expandablelistviewtest.Model.modelMemberProfile;
 import com.neerajweb.expandablelistviewtest.R;
 import com.neerajweb.expandablelistviewtest.utils.Const;
 
+
 public class ProfileMaster extends Activity {
     // Log tag
     private static final String TAG = ProfileMaster.class.getSimpleName();
+    private ShapeLoadingDialog shapeLoadingDialog;
 
     // profiles json url
 //    private static final String url = "http://api.androidhive.info/json/profiles.json";
@@ -77,11 +80,16 @@ public class ProfileMaster extends Activity {
         adapter = new adapter_Profile_Master(this, profileList);
         listView.setAdapter(adapter);
 
-        pDialog = new ProgressDialog(this);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Getting profile...");
-        pDialog.show();
+//        pDialog = new ProgressDialog(this);
+//        // Showing progress dialog before making http request
+//        pDialog.setMessage("Getting profile...");
+//        pDialog.show();
 
+
+        shapeLoadingDialog=new ShapeLoadingDialog(this);
+        shapeLoadingDialog.setCanceledOnTouchOutside(false);
+        shapeLoadingDialog.setLoadingText("Getting profile...");
+        shapeLoadingDialog.show();
         // changing action bar color
 //        getActionBar().setBackgroundDrawable(
 //                new ColorDrawable(Color.parseColor("#1b1b1b")));
@@ -162,10 +170,15 @@ public class ProfileMaster extends Activity {
     }
 
     private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
+        if (shapeLoadingDialog!= null) {
+            shapeLoadingDialog.dismiss();
+            shapeLoadingDialog= null;
         }
+
+//        if (pDialog != null) {
+//            pDialog.dismiss();
+//            pDialog = null;
+//        }
     }
 
     @Override
