@@ -218,11 +218,14 @@ public class MaterialLoginView extends FrameLayout {
                 registerBtn.setText(string);
             }
 
-            int color = a.getColor(R.styleable.MaterialLoginView_loginTextColor, ContextCompat.getColor(getContext(), R.color.material_login_login_text_color));
+//            int color = a.getColor(R.styleable.MaterialLoginView_loginTextColor, ContextCompat.getColor(getContext(), R.color.material_login_login_text_color));
+            int color = a.getColor(R.styleable.MaterialLoginView_loginTextColor, getResources().getColor( R.color.material_login_login_text_color));
+
             loginUser.getEditText().setTextColor(color);
             loginPass.getEditText().setTextColor(color);
 
-            color = a.getColor(R.styleable.MaterialLoginView_registerTextColor, ContextCompat.getColor(getContext(), R.color.material_login_register_text_color));
+//            color = a.getColor(R.styleable.MaterialLoginView_registerTextColor, ContextCompat.getColor(getContext(), R.color.material_login_register_text_color));
+            color = a.getColor(R.styleable.MaterialLoginView_registerTextColor, getResources().getColor(R.color.material_login_register_text_color));
             registerUser.getEditText().setTextColor(color);
 
 //            registerPass.getEditText().setTextColor(color);

@@ -22,31 +22,48 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <!--Floating Button Setting-->
 
-    <application
-        android:name=".Maintainance.ApartmentApplicationController"
-        android:allowBackup="true"
-        android:icon="@drawable/lakshaya_logo"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <!-- Splash screen -->
-        <activity
-            android:name=".SplashScreen"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!--<application-->
+            <!--android:allowBackup="true"-->
+            <!--android:icon="@drawable/user"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:theme="@style/AppTheme" >-->
+            <!--<activity-->
+            <!--android:name=".floating_action_button_list"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:screenOrientation="portrait" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
-        <!-- Main activity -->
-        <activity
-            android:name="com.neerajweb.expandablelistviewtest.LoginMainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >            
-        </activity>
+    <!--Splash screen Setting-->
+    <!--<application-->
+        <!--android:name=".Maintainance.ApartmentApplicationController"-->
+        <!--android:allowBackup="true"-->
+        <!--android:icon="@drawable/lakshaya_logo"-->
+        <!--android:label="@string/app_name"-->
+        <!--android:theme="@style/AppTheme" >-->
+        <!--&lt;!&ndash; Splash screen &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name=".SplashScreen"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@android:style/Theme.Black.NoTitleBar" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!--&lt;!&ndash; Main activity &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="com.neerajweb.expandablelistviewtest.LoginMainActivity"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:screenOrientation="portrait" >            -->
+        <!--</activity>-->
 
     <!--Profile Image Upload Module Setting-->
     <!--<application-->
@@ -158,17 +175,22 @@
 
         <!-- -->
         <!--Maintainance Module Setting-->
-        <!--<activity-->
-            <!--android:name=".MaintainanceMain"-->
-            <!--android:label="@string/maintainanceapp_name"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:noHistory="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <!-- -->
+        <application
+        android:name=".Maintainance.ApartmentApplicationController"
+        android:icon="@drawable/profileuser"
+        android:label="@string/maintainanceapp_name"
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name=".MaintainanceMain"
+            android:label="@string/maintainanceapp_name"
+            android:screenOrientation="portrait"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->

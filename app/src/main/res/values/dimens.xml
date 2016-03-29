@@ -22,7 +22,8 @@
     <dimen name="fifteen_dp">15dp</dimen>
 
     <dimen name="twenty_dp">20dp</dimen>
-    <dimen name="twentyfive_dp">35dp</dimen>
+    <dimen name="twentyfive_dp">25dp</dimen>
+    <dimen name="thirty_dp">30dp</dimen>
     <dimen name="thirtyfive_dp">35dp</dimen>
 
     <dimen name="normal_font_size">7dp</dimen>

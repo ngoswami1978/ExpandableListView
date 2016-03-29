@@ -1,1 +1,1 @@
-include ':app', ':circualreveal', ':shapeloading'
+include ':app', ':circualreveal', ':shapeloading', ':library'

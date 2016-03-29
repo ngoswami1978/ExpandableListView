@@ -27,13 +27,16 @@ public class SplashScreen extends Activity {
         final ViewGroup root = (ViewGroup) findViewById(R.id.root);
         tvApartmentName = (TextView) findViewById(R.id.tvApartmentName);
 
-        setCustomFontface("horrendo.ttf", tvApartmentName);
+        setCustomFontface("milit.ttf", tvApartmentName);
 
         root.removeAllViews();
         LoadingDots loadingDots = new LoadingDots(this);
         loadingDots.setDotsCount(4);
         loadingDots.setDotsSizeRes(R.dimen.LoadingDots_dots_size_default);
-        loadingDots.setDotsColor(Color.BLUE);
+        loadingDots.setLoopDuration(1200); // .LoadingDots_loop_duration="1200"
+        loadingDots.setLoopStartDelay(600); // .LoadingDots_loop_start_delay="600"
+
+        loadingDots.setDotsColor(Color.WHITE);
         root.addView(loadingDots, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 

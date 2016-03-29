@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.RectF;
@@ -90,7 +91,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
     private MaintainanceCollectionExpandableBouncerLayout mMaintainanceCollectionExpandableBouncerLayout;
     private modelMaintainanceLoadReportPeriods model_rptPeriods;
 
-    private Activity mContext; //not used yet we can use it later on
+    private static Context mContext; //not used yet we can use it later on
     JSONObject jsonobject;
     JSONArray jsonarray;
 
@@ -225,6 +226,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maintainancemain);
         IsSaveMaintainance=false;
+        mContext=getApplicationContext();
 
         //Code for total Collection using Expandable Bounce effect
         View switcher = findViewById(R.id.switcher);
@@ -413,16 +415,16 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
             @Override
             public void onClick(View v) {
                 try {
-                    final FloatingActionButton floatingActionButton = (FloatingActionButton)  v.findViewById(R.id.fab_refresh_btn);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            final OvershootInterpolator interpolator = new OvershootInterpolator();
-                            ViewCompat.animate(floatingActionButton).rotation(360f).withLayer().setDuration(MAX_LEVEL).setInterpolator(interpolator).start();
 
-                        }
-                    },2000);
-
+//                    final FloatingActionButton floatingActionButton = (FloatingActionButton)  v.findViewById(R.id.fab_refresh_btn);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            final OvershootInterpolator interpolator = new OvershootInterpolator();
+//                            ViewCompat.animate(floatingActionButton).rotation(360f).withLayer().setDuration(MAX_LEVEL).setInterpolator(interpolator).start();
+//
+//                        }
+//                    },2000);
 
                     loadJSONManageRptPeriods();
                 } catch (Exception Ex) {
@@ -2391,10 +2393,10 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
                         }
 
 
-                        Toast.makeText(getContext(), "generating report keep patience!! - " + getMonth(intMonth) + " - " + String.valueOf(intYear), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "generating report keep patience!! - " + getMonth(intMonth) + " - " + String.valueOf(intYear), Toast.LENGTH_SHORT).show();
                         dialog = new CustomDialogMaintainance(myContext, String.valueOf(intMonth), String.valueOf(intYear));
                     } catch (Exception Ex) {
-                        Toast.makeText(getContext(), "Please check network connection...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Please check network connection...", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -2408,7 +2410,7 @@ public class MaintainanceMain extends ActionBarActivity implements DateTimePicke
                     }
                     catch (Exception Ex)
                     {
-                        Toast.makeText(getContext(), "Error while generating report , try again to click generate button...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Error while generating report , try again to click generate button...", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

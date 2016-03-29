@@ -1,7 +1,7 @@
 <resources>
 
     <string name="companywebsite">www.myandroidng.com</string>
-    <string name="apartmentname">Lakshay Apartment L2</string>
+    <string name="apartmentname">LAKSHAY APARTMENT</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -55,7 +55,7 @@
     <color name="snow">#eee9e9</color>
     <string name="Flat_prompt">Choose a Flat</string>
 
-    <string name="app_name">Lakshaya</string>
+    <string name="app_name">Lakshay Apartment L-2</string>
     <string name="btnTakePicture">Capture Image</string>
     <string name="btnRecordVideo">Record Video</string>
     <string name="btnTakePictureGallery">Take Picture from gallery</string>

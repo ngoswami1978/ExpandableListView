@@ -20,7 +20,7 @@ import com.neerajweb.expandablelistviewtest.CustomDialogMaintainance;
 import com.neerajweb.expandablelistviewtest.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Context mContext;
+    private static Context mContext;
 
     private CustomDialogMaintainance dialog ;
     private String strMonth;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.quickactiondialogactivity_main);
 
 //      dialog  = new CustomDialogMaintainance(this);
-        mContext=this;
+        mContext=getApplicationContext();
         myContext=MainActivity.this;
 
         final View buttonShow = findViewById(R.id.btnShow);
@@ -176,13 +176,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     try {
-                        Toast.makeText(getContext(), "generating report keep patience!! - " + getMonth(intMonth) + " - " + String.valueOf(intYear), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "generating report keep patience!! - " + getMonth(intMonth) + " - " + String.valueOf(intYear), Toast.LENGTH_SHORT).show();
                         dialog = new CustomDialogMaintainance(myContext, String.valueOf(intMonth), String.valueOf(intYear));
 
 //                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 //                        dialog.show();
                     } catch (Exception Ex) {
-                        Toast.makeText(getContext(), Ex.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, Ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     catch (Exception Ex)
                     {
-                        Toast.makeText(getContext(), Ex.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, Ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
